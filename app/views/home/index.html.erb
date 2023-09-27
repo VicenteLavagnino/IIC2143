@@ -53,16 +53,18 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Registrarse</strong>
-            <%= link_to "Sign up", new_user_session_path %>
-          </a>
-          <a class="button is-light">
-            Iniciar Sesión
-            <%= link_to "Sign in", new_user_session_path %>
-          </a>
+  <div class="navbar-item">
+    <div class="buttons">
+      <%= link_to new_user_registration_path, class: "button is-primary" do %>
+        <strong>Registrarse</strong>
+      <% end %>
+      <%= link_to new_user_session_path, class: "button is-light" do %>
+        Iniciar Sesión
+      <% end %>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </div>
