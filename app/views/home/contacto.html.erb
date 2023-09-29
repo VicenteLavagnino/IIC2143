@@ -4,16 +4,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
 </head>
 <body>
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title">
-                    Contacto a Ba Zar!
-                </h1>
-                <p class="subtitle">
-                    El sitio web de intercambio más grande de Chile.
+    <section class="section">
+        <div class="container has-text-centered">
+            <h2 class="title">
+                Contacto
+            </h2>
+            <div class="content">
+                <p>
+                    ¿Tienes alguna pregunta o comentario? ¡Estamos aquí para ayudarte!
                 </p>
-                <%= image_tag('logo.png', alt: 'Logo', width: '75', height: 'auto') %>
+            </div>
+            <div class="notification is-warning">
+                <p class="subtitle">
+                    Página en Construcción
+                </p>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <form>
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Tu nombre">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Correo Electrónico</label>
+                            <div class="control">
+                                <input class="input" type="email" placeholder="Tu correo electrónico">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Mensaje</label>
+                            <div class="control">
+                                <textarea class="textarea" placeholder="Escribe tu mensaje aquí"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
