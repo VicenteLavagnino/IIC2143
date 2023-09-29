@@ -1,5 +1,13 @@
 @import "custom";
 
+.logo-img {
+    width: 200px;
+    /* Ajusta el ancho según tus necesidades */
+    height: auto;
+    /* Mantiene la proporción original */
+}
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
