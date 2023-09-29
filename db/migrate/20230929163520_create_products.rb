@@ -5,8 +5,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :image
       t.string :set
-      t.references :owner, null: false, foreign_key: true
-
+      t.references :usuario, null: false, foreign_key: true
       t.timestamps
     end
   end

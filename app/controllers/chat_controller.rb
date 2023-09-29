@@ -1,4 +1,5 @@
 class ChatController < ApplicationController
+
   def show
     @chats = Chat.all
       render json: @chats

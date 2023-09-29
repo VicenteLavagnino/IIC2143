@@ -1,4 +1,5 @@
 class VisitorController < ApplicationController
+
   def show
     @visitors = Visitor.all
       render json: @visitors

@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
 
   create_table "chat_users", force: :cascade do |t|
     t.bigint "chat_id", null: false
+
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,9 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
 
   create_table "chats", force: :cascade do |t|
     t.string "type"
-    t.text "description"
     t.string "state"
-    t.string "string"
     t.bigint "request_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,9 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
     t.text "description"
     t.string "image"
     t.string "set"
-    t.string "string"
+    t.bigint "usuario_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_products_on_usuario_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
     t.text "description"
     t.date "date"
     t.string "state"
-    t.string "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_requests_on_product_id"
@@ -106,8 +105,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
   end
 
   add_foreign_key "chat_users", "chats"
-  add_foreign_key "chat_users", "users"
+  add_foreign_key "chat_users", "usuarios"
   add_foreign_key "chats", "requests"
+  add_foreign_key "products", "usuarios"
+
   add_foreign_key "requests", "products"
   add_foreign_key "reviews", "products"
 end

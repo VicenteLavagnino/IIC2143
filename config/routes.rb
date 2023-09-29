@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
 
+
   get '/explora', to: 'home#explora'
   get '/nosotros', to: 'home#nosotros'
   get '/trabaja', to: 'home#trabaja'
@@ -78,6 +79,5 @@ Rails.application.routes.draw do
   get '/chatuser/:id', to: 'chatuser#filter'
 
   delete '/chatuser/:id', to: 'chatuser#destroy'
-
 
 end
