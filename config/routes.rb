@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  
   # Defines the root path route ("/")
   # root "articles#index"
 end
