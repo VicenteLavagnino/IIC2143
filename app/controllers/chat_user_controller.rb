@@ -1,6 +1,5 @@
 class ChatUserController < ApplicationController
   def show
-
     @chatuser = ChatUser.all
       render json: @chatuser
   end
@@ -23,12 +22,12 @@ class ChatUserController < ApplicationController
   end
 
   def filter
-      @chatuser = ChatUser.where("id = ?", params[:id]) 
+    @chatuser = ChatUser.where("id = ?", params[:id]) 
       render json: @chatuser 
   end
   
   def destroy
-      @chatuser = ChatUser.find(params[:id])
+    @chatuser = ChatUser.find(params[:id])
       @chchatuserat.destroy
   end
 
