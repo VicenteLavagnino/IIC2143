@@ -6,7 +6,6 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :image
       t.string :set
       t.references :usuario, null: false, foreign_key: true
-
       t.timestamps
     end
   end

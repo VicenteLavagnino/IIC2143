@@ -36,4 +36,5 @@ class ReviewController < ApplicationController
     def review_params
         params.require(:review).permit(:rate, :content, :product)
     end
+
 end

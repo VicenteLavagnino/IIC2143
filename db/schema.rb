@@ -27,11 +27,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
 
   create_table "chat_users", force: :cascade do |t|
     t.bigint "chat_id", null: false
-    t.bigint "usuario_id", null: false
+
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_chat_users_on_chat_id"
-    t.index ["usuario_id"], name: "index_chat_users_on_usuario_id"
+    t.index ["user_id"], name: "index_chat_users_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -107,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_170600) do
   add_foreign_key "chat_users", "usuarios"
   add_foreign_key "chats", "requests"
   add_foreign_key "products", "usuarios"
+
   add_foreign_key "requests", "products"
   add_foreign_key "reviews", "products"
 end
