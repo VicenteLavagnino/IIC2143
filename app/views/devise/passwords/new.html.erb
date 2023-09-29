@@ -1,16 +1,39 @@
-<h2>Forgot your password?</h2>
+<!DOCTYPE html>
+<html>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+</head>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <h2 class="title">¿Olvidaste tu contraseña?</h2>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+                    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                        <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= render "devise/shared/links" %>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <%= f.submit "Enviar instrucciónes para reestablecer", class: "button is-primary" %>
+                            </div>
+                        </div>
+                    <% end %>
+
+                    <%= render "devise/shared/links" %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
