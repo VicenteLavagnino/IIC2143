@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   get '/trabaja', to: 'home#trabaja'
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
-
-  get 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")
