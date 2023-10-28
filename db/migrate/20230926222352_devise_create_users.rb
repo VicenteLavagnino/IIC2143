@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :reset_password_sent_at
       t.text :description
       t.string :image
-      t.integer :number
+      t.string :phone_number
       ## Rememberable
       t.datetime :remember_created_at
 
