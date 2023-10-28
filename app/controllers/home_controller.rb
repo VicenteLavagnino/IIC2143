@@ -13,13 +13,6 @@ class HomeController < ApplicationController
 
   def reporta
   end
-  def mensajeria_c
-    @chats = Chat.all
-    @users = User.all
-    @chats = Chat.where("user1_id = ? OR user2_id = ?", current_user.id, current_user.id)
-
-    
-  end
   def chat
     user1 = current_user.id
     user2 = params[:user_id]
