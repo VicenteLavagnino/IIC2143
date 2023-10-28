@@ -15,7 +15,7 @@ bob = User.create!(
   password: "password123",
   description: "Bob the Builder",
   image: "bob_path.jpg",
-  number: 2678901,
+  phone_number: "+56 9 2314 1234",
   name: "Bob"
 )
 
@@ -24,7 +24,7 @@ alice = User.create!(
   password: "password123",
   description: "Alice from Wonderland",
   image: "alice_path.jpg",
-  number: 4567890,
+  phone_number: "+56 9 4323 1234",
   name: "Alice"
 )
 
@@ -36,7 +36,7 @@ charlie = User.create!(
   password: "password123",
   description: "Charlie from Chocolate Factory",
   image: "charlie_path.jpg",
-  number: 1234567,
+  phone_number: "+56 9 4323 1232",
   name: "Charlie"
 )
 
