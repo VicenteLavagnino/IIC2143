@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "db7ai9zpx"
+  api_key: "627426456856253"
+  api_secret: "ezyD7zCwm1k4RIPNIRfuHXSUwZw"
+  secure: true
+
+production:
+  cloud_name: "db7ai9zpx"
+  api_key: "627426456856253"
+  api_secret: "ezyD7zCwm1k4RIPNIRfuHXSUwZw"
+  secure: true
