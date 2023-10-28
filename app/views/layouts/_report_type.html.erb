@@ -37,7 +37,8 @@
 
 <div id="sidebar" class="column is-3">
     <%= link_to "Usuarios", user_reports_path, id: "user-reports", class: "perfil-item #{'active-item' if current_page?(user_reports_path)}" %>
-    <%= link_to "Productos", edit_user_registration_path, id: "seguridad-link", class: "perfil-item #{'active-item' if current_page?(edit_user_registration_path)}" %>
+    <%= link_to "Productos", product_reports_path, id: "product-reports", class: "perfil-item #{'active-item' if current_page?(product_reports_path)}" %>
+    
 </div>
 
 
