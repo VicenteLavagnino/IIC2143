@@ -52,10 +52,21 @@
 
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %> Perfíl
+
+            <% if current_user.image.present? %>
+              <%= cl_image_tag(current_user.image, width: 30, height: 30, crop: "fill", alt: 'Imagen de usuario', class: 'profile-icon') %>
+            <% else %>
+              <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+            <% end %>
+          
+              Perfíl
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="<%= edit_user_registration_path %>">Editar</a>
+              <a class="navbar-item" href="<%= gestionar_perfil_path %>">
+
+                  Editar
+              </a>
+
               <hr class="navbar-divider">
               <a class="navbar-item">
                 <%= button_to "Salir", destroy_user_session_path, method: :delete, class: "button-as-link" %>
