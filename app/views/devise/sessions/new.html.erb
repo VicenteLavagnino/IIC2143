@@ -14,9 +14,9 @@
             <div class="box box-shadow">
               <h2 class="title">Ingresar</h2>
 
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                <%= render "devise/shared/error_messages", resource: resource %>
 
+              <%= form_for(resource, as: resource_name, url: new_session_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
                 <div class="field">
                   <%= f.label :email, class: "label" %>
@@ -38,7 +38,7 @@
 
                 <div class="field">
                   <div class="control">
-                    <%= f.submit "Iniciar sesion!", class: "button is-primary" %>
+                    <%= f.submit "Ingresar!", class: "button is-primary" %>
                   </div>
                 </div>
               <% end %>
