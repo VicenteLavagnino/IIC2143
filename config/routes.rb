@@ -3,7 +3,11 @@ Rails.application.routes.draw do
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
   root 'home#index'
 
-
+  resources :mensajeria
+  resources :chats do
+    resources :messages, only: [:create]
+  end
+  
 
   get '/explora', to: 'home#explora'
   get '/nosotros', to: 'home#nosotros'
@@ -11,14 +15,20 @@ Rails.application.routes.draw do
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
 
+  get '/chat', to: 'home#chat', as: 'chat_lobby'
+  get '/chat/:user_id', to: 'home#chat', as: 'start_chat'
+
+
+
   get '/perfil/gestionar_perfil', to: 'perfil#gestionar_perfil', as: :gestionar_perfil
+
 
   get '/reports/user_reports', to: 'reports#user_reports', as: :user_reports
   delete '/reports/:id', to: 'reports#destroy', as: :delete_report
   
 
   #product
-  get '/product', to: 'product#show'
+  get '/product', to: 'product#show' 
   get '/product', to: 'product#create'
   get '/product/:id', to: 'product#update'
   get '/product/:id', to: 'product#filter'

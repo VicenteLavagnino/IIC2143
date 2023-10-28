@@ -28,34 +28,17 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-          <a class="navbar-item" href="/">
-          Inicio
-          </a>
-
-        <a class="navbar-item" href="/explora">
-          Explora
-        </a>
- 
-
+        <a class="navbar-item" href="/">Inicio</a>
+        <a class="navbar-item" href="/explora">Explora</a>
+        
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Más
-          </a>
-
+          <a class="navbar-link">Más</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="/nosotros">
-              Nosotros
-            </a>
-            <a class="navbar-item" href="/trabaja">
-              Trabaja aquí
-            </a>
-            <a class="navbar-item" href="/contacto">
-              Contact
-            </a>
+            <a class="navbar-item" href="/nosotros">Nosotros</a>
+            <a class="navbar-item" href="/trabaja">Trabaja aquí</a>
+            <a class="navbar-item" href="/contacto">Contacto</a>
             <hr class="navbar-divider">
-            <a class="navbar-item" href="/reporta">
-              Reporta un problema
-            </a>
+            <a class="navbar-item" href="/reporta">Reporta un problema</a>
           </div>
         </div>
       </div>
@@ -66,8 +49,13 @@
             <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
             </div>
           <% end %>
+
+            <div class="navbar-item">
+              <%= link_to "Mis Chats", chat_lobby_path, class: "button is-light" %>
+            </div>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
+
             <% if current_user.image.present? %>
               <%= cl_image_tag(current_user.image, width: 30, height: 30, crop: "fill", alt: 'Imagen de usuario', class: 'profile-icon') %>
             <% else %>
@@ -81,6 +69,7 @@
 
                   Editar
               </a>
+
               <hr class="navbar-divider">
               <a class="navbar-item">
                 <%= button_to "Salir", destroy_user_session_path, method: :delete, class: "button-as-link" %>
@@ -108,7 +97,6 @@
   <% end %>
 
   <%= yield %>
-
 </body>
 
 </html>
