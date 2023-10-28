@@ -1,9 +1,9 @@
 class ChatController < ApplicationController
 
   def show
-    @chats = Chat.all
-      render json: @chats
+    @chat = Chat.find(params[:id])
   end
+  
   def create
     @chat = Chat.new(chat_params)
       if @chat.save

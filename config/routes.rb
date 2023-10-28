@@ -3,13 +3,20 @@ Rails.application.routes.draw do
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
   root 'home#index'
 
-
+  resources :mensajeria
+  resources :chats do
+    resources :messages, only: [:create]
+  end
+  
 
   get '/explora', to: 'home#explora'
   get '/nosotros', to: 'home#nosotros'
   get '/trabaja', to: 'home#trabaja'
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
+  get '/chat', to: 'home#chat', as: 'chat_lobby'
+  get '/chat/:user_id', to: 'home#chat', as: 'start_chat'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")
@@ -40,7 +47,7 @@ Rails.application.routes.draw do
   delete '/visitor/:id', to: 'visitor#destroy'
 
   #product
-  get '/product', to: 'product#show'
+  get '/product', to: 'product#show' 
   get '/product', to: 'product#create'
   get '/product/:id', to: 'product#update'
   get '/product/:id', to: 'product#filter'
