@@ -29,3 +29,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+app/controllers/wishlist_controller.rb
+app/helpers/wishlist_helper.rb
+app/models/wishlist.rb
+db/migrate/20231028144409_create_wishlists.rb
+db/migrate/20231028151728_rename_usuario_id_in_products.rb
+test/controllers/wishlist_controller_test.rb
+test/fixtures/wishlists.yml
+test/models/wishlist_test.rb
