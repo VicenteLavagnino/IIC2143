@@ -61,6 +61,11 @@
       </div>
       <div class="navbar-end custom-navbar-end">
         <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <div class="navbar-item">
+            <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
+            </div>
+          <% end %>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
             <% if current_user.image.present? %>

@@ -12,36 +12,10 @@ Rails.application.routes.draw do
   get '/reporta', to: 'home#reporta'
 
   get '/perfil/gestionar_perfil', to: 'perfil#gestionar_perfil', as: :gestionar_perfil
+
+  get '/reports/user_reports', to: 'reports#user_reports', as: :user_reports
+  delete '/reports/:id', to: 'reports#destroy', as: :delete_report
   
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  
-  # Defines the root path route ("/")
-  # root "articles#index"
-
-  #Admin
-  get '/admin', to: 'admin#show'
-  get '/admin', to: 'admin#create'
-  get '/admin/:id', to: 'admin#update'
-  get '/admin/:id', to: 'admin#filter'
-
-  delete '/admin/:id', to: 'admin#destroy'
-
-  #usuario
-  get '/usuario', to: 'usuario#show'
-  get '/usuario', to: 'usuario#create'
-  get '/usuario/:id', to: 'usuario#update'
-  get '/usuario/:id', to: 'usuario#filter'
-
-  delete '/usuario/:id', to: 'usuario#destroy'
-
-  #visitor
-  get '/visitor', to: 'visitor#show'
-  get '/visitor', to: 'visitor#create'
-  get '/visitor/:id', to: 'visitor#update'
-  get '/visitor/:id', to: 'visitor#filter'
-
-  delete '/visitor/:id', to: 'visitor#destroy'
 
   #product
   get '/product', to: 'product#show'
@@ -83,5 +57,6 @@ Rails.application.routes.draw do
   get '/chatuser/:id', to: 'chatuser#filter'
 
   delete '/chatuser/:id', to: 'chatuser#destroy'
+
 
 end
