@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
 
   get '/reports/user_reports', to: 'reports#user_reports', as: :user_reports
+  get '/reports/product_reports', to: 'reports#product_reports', as: :product_reports
   delete '/reports/:id', to: 'reports#destroy', as: :delete_report
   
 
