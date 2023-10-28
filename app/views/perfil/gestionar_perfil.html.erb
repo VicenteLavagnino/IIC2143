@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <title>Gestión de Perfil</title>
+    <style>
+        #sidebar {
+            background-color: #f5f5f5; 
+            overflow-y: scroll;
+            height: 100vh;
+            border-right: 1px solid #e5e5e5;
+        }
+        .perfil-item, .perfil-item.logout button {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        .perfil-item:hover, .perfil-item.logout:hover button {
+            background-color: #e9e9e9;
+        }
+        .logout, .logout button {
+            color: red;
+        }
+        .logout:hover, .logout:hover button {
+            background-color: red;
+            color: white;
+        }
+
+        .avatar-display img {
+        border-radius: 50%;
+        }
+
+        .form-container {
+            padding-top: 120px;
+        }
+
+    </style>
+</head>
+<body>
+<% if current_user.admin? %>
+  <p>Este es un texto especial para administradores.</p>
+<% end %>
+
+<div class="columns">
+    <%= render 'layouts/items' %>   
+    <div class="container form-container">
+        <div class="field">
+            <label class="label">Imagen</label>
+                <div class="avatar-display">
+                    <% if current_user.image.present? %>
+                        <% avatar_id = current_user.image %>
+                        <img src="<%= cl_image_path(avatar_id, width: 150, height: 150, crop: "fill") %>" alt="Avatar">
+                    <% else%>
+                        <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+                    <% end %>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input type="email" class="input" value="<%= current_user.email %>" readonly>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+                <input type="text" class="input" value="<%= current_user.name %>" readonly>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Descripción</label>
+            <div class="control">
+                <textarea class="textarea" readonly><%= current_user.description %></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Número de teléfono</label>
+            <div class="control">
+                <input type="text" class="input" value="<%= current_user.phone_number %>" readonly>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

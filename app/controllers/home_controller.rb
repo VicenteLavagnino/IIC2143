@@ -13,5 +13,5 @@ class HomeController < ApplicationController
 
   def reporta
   end
-  
+
 end
