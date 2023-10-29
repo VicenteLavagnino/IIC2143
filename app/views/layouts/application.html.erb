@@ -28,33 +28,17 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">
-          Inicio
-        </a>
-
-        <a class="navbar-item" href="/explora">
-          Explora
-        </a>
+        <a class="navbar-item" href="/">Inicio</a>
+        <a class="navbar-item" href="/explora">Explora</a>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Más
-          </a>
-
+          <a class="navbar-link">Más</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="/nosotros">
-              Nosotros
-            </a>
-            <a class="navbar-item" href="/trabaja">
-              Trabaja aquí
-            </a>
-            <a class="navbar-item" href="/contacto">
-              Contact
-            </a>
+            <a class="navbar-item" href="/nosotros">Nosotros</a>
+            <a class="navbar-item" href="/trabaja">Trabaja aquí</a>
+            <a class="navbar-item" href="/contacto">Contacto</a>
             <hr class="navbar-divider">
-            <a class="navbar-item" href="/reporta">
-              Reporta un problema
-            </a>
+            <a class="navbar-item" href="/reporta">Reporta un problema</a>
           </div>
         </div>
       </div>
@@ -62,13 +46,21 @@
         <% if user_signed_in? %>
           <!-- Dropdown para Añadir nuevo LEGO -->
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              Acciones
-            </a>
+            <a class="navbar-link">Acciones</a>
             <div class="navbar-dropdown">
               <%= link_to "Añadir nuevo LEGO", new_product_path, class: "navbar-item" %>
               <%= link_to "Editar mis LEGOS", my_legos_path, class: "navbar-item" %>
             </div>
+          </div>
+
+          <% if current_user.admin? %>
+            <div class="navbar-item">
+              <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
+            </div>
+          <% end %>
+
+          <div class="navbar-item">
+            <%= link_to "Mis Chats", chat_lobby_path, class: "button is-light" %>
           </div>
 
           <!-- Dropdown para Perfil -->
@@ -82,9 +74,7 @@
               Perfíl
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="<%= gestionar_perfil_path %>">
-                Editar
-              </a>
+              <a class="navbar-item" href="<%= gestionar_perfil_path %>">Editar</a>
               <hr class="navbar-divider">
               <a class="navbar-item">
                 <%= button_to "Salir", destroy_user_session_path, method: :delete, class: "button-as-link" %>
@@ -112,7 +102,6 @@
   <% end %>
 
   <%= yield %>
-
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
+ 
+  validates :product, :description, :state, presence: true
   belongs_to :product
-  has_one :chat
-  belongs_to :user
 end
