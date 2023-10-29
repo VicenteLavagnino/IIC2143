@@ -30,9 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_183513) do
     t.text "description"
     t.string "image"
     t.string "set"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -76,6 +76,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_183513) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "description"
+    t.string "phone_number"
+    t.string "image"
 
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -91,8 +94,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_183513) do
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
-  add_foreign_key "messages", "chats"
-  add_foreign_key "messages", "users"
+  add_foreign_key "chat_users", "chats"
+  add_foreign_key "chat_users", "usuarios"
+  add_foreign_key "chats", "requests"
+
   add_foreign_key "products", "users"
   add_foreign_key "requests", "products"
   add_foreign_key "reviews", "products"
