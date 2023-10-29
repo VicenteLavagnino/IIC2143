@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Mis LEGOs Publicados</title>
+</head>
+<body>
+
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-10">
+                    <div class="box box-shadow">
+                        <h2 class="title has-text-centered">Mis LEGOs Publicados</h2>
+                        
+                        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                          <thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Descripción</th>
+                              <th>Set</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @products.each do |product| %>
+                              <tr>
+                                <td><%= product.name %></td>
+                                <td><%= product.description.truncate(60) %></td>
+                                <td><%= product.set %></td>
+                                <td>
+                                  <div class="buttons">
+                                    <%= link_to 'Editar', edit_product_path(product), class: 'button is-light is-warning' %>
+                                    <%= button_to 'Eliminar', delete_product_path(product), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'button is-light is-danger' %>
+                                  </div>
+                                </td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

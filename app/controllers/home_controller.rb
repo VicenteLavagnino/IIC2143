@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   end
 
   def explora
+    @products = Product.all
   end
 
   def nosotros

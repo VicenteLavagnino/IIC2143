@@ -30,7 +30,7 @@
       <div class="navbar-start">
         <a class="navbar-item" href="/">Inicio</a>
         <a class="navbar-item" href="/explora">Explora</a>
-        
+
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">Más</a>
           <div class="navbar-dropdown">
@@ -44,32 +44,37 @@
       </div>
       <div class="navbar-end custom-navbar-end">
         <% if user_signed_in? %>
+          <!-- Dropdown para Añadir nuevo LEGO -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">Acciones</a>
+            <div class="navbar-dropdown">
+              <%= link_to "Añadir nuevo LEGO", new_product_path, class: "navbar-item" %>
+              <%= link_to "Editar mis LEGOS", my_legos_path, class: "navbar-item" %>
+            </div>
+          </div>
+
           <% if current_user.admin? %>
             <div class="navbar-item">
-            <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
+              <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
             </div>
           <% end %>
 
-            <div class="navbar-item">
-              <%= link_to "Mis Chats", chat_lobby_path, class: "button is-light" %>
-            </div>
+          <div class="navbar-item">
+            <%= link_to "Mis Chats", chat_lobby_path, class: "button is-light" %>
+          </div>
+
+          <!-- Dropdown para Perfil -->
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-
-            <% if current_user.image.present? %>
-              <%= cl_image_tag(current_user.image, width: 30, height: 30, crop: "fill", alt: 'Imagen de usuario', class: 'profile-icon') %>
-            <% else %>
-              <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
-            <% end %>
-          
+              <% if current_user.image.present? %>
+                <%= cl_image_tag(current_user.image, width: 30, height: 30, crop: "fill", alt: 'Imagen de usuario', class: 'profile-icon') %>
+              <% else %>
+                <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+              <% end %>
               Perfíl
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="<%= gestionar_perfil_path %>">
-
-                  Editar
-              </a>
-
+              <a class="navbar-item" href="<%= gestionar_perfil_path %>">Editar</a>
               <hr class="navbar-divider">
               <a class="navbar-item">
                 <%= button_to "Salir", destroy_user_session_path, method: :delete, class: "button-as-link" %>
