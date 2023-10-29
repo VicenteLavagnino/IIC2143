@@ -29,9 +29,11 @@ class ProductController < ApplicationController
     
   def destroy
     @product = Product.find(params[:id])
+    if @product
       @product.destroy
-  end
 
+    end
+  end
 
 
   def product_params
