@@ -1,0 +1,441 @@
+{
+  "Minitest": {
+    "coverage": {
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/admin_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/chat_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/chat_user_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/home_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/messages_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/perfil_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/product_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/request_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/review_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/user_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/user_reports_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/usuario_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/controllers/visitor_controller_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/chat_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/message_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/post_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/product_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/request_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/review_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/user_report_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/leonelcespedess/Proyecto/2023-2-grupo-47/test/models/user_test.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1698545195
+  }
+}

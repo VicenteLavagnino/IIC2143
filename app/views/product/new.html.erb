@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Añadir nuevo LEGO</title>
+</head>
+
+<body>
+
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5">
+                    <div class="box box-shadow">
+                        <h2 class="title">Añadir nuevo LEGO</h2>
+
+                        <%= form_with(model: @product, local: true) do |f| %>
+
+                            <div class="field">
+                                <%= f.label :name, "Nombre del LEGO", class: "label" %>
+                                <%= f.text_field :name, class: "input" %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.label :description, "Descripción del LEGO", class: "label" %>
+                                <%= f.text_area :description, class: 'textarea' %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.label :image, "URL de la imagen", class: 'label' %>
+                                <%= f.text_field :image, class: 'input' %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.label :set, "Set", class: 'label' %>
+                                <%= f.text_field :set, class: 'input' %>
+                            </div>
+
+                            <div class="field">
+                                <%= f.submit "Publicar", class: 'button is-primary' %>
+                            </div>
+
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

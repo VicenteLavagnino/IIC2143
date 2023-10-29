@@ -25,9 +25,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    Chat.where(user1_id: current_user.id).or(Chat.where(user2_id: current_user.id)).destroy_all
+    super
+  end
+  
   
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
