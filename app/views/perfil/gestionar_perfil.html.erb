@@ -38,30 +38,36 @@
         }
 
         .avatar-display img {
-        border-radius: 50%;
+            border-radius: 50%;
         }
 
         .form-container {
             padding-top: 120px;
         }
 
+        .shadow-box {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
 <div class="columns">
     <%= render 'layouts/items' %>   
-    <div class="container form-container">
+    <div class="container form-container shadow-box">
         <div class="field">
             <label class="label">Imagen</label>
-                <div class="avatar-display">
-                    <% if current_user.image.present? %>
-                        <% avatar_id = current_user.image %>
-                        <img src="<%= cl_image_path(avatar_id, width: 150, height: 150, crop: "fill") %>" alt="Avatar">
-                    <% else%>
-                        <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
-                    <% end %>
-                </div>
+            <div class="avatar-display">
+                <% if current_user.image.present? %>
+                    <% avatar_id = current_user.image %>
+                    <img src="<%= cl_image_path(avatar_id, width: 150, height: 150, crop: "fill") %>" alt="Avatar">
+                <% else%>
+                    <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+                <% end %>
+            </div>
         </div>
 
         <div class="field">
