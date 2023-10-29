@@ -3,6 +3,10 @@ class ReportsController < ApplicationController
         @user_reports = UserReport.all
     end
 
+    def product_reports
+        @product_reports = ProductReport.all
+    end
+
     def destroy
         @user_report = UserReport.find(params[:id])
         @user_report.destroy

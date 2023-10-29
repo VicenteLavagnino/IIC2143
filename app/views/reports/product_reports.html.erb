@@ -7,7 +7,7 @@
 
 <div class="columns"
   <%= render 'layouts/report_type'%>
-  <% if @user_reports.empty? %>
+  <% if @product_reports.empty? %>
     <p class="margins">No hay reportes por ahora.</p>
   <% else %>
     <table class="styled-table margins">
@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @user_reports.each do |report| %>
+        <% @product_reports.each do |report| %>
           <tr>
             <td><%= report.id %></td>
             <td><%= report.user_id %></td>
