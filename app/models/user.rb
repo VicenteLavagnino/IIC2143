@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def set_admin_status
-    self.admin = true if self.email == 'cris.dmaass@gmail.com'
+    self.admin = true if self.email == 'cris.dmaass@gmail.com' or 'vicente.lavagnino@uc.cl' or 'leo.feo@gmail.com'
   end
 end
 
