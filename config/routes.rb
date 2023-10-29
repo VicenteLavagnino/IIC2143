@@ -44,12 +44,15 @@ Rails.application.routes.draw do
   delete '/visitor/:id', to: 'visitor#destroy'
 
   #product
-  get '/product', to: 'product#show'
-  get '/product', to: 'product#create'
-  get '/product/:id', to: 'product#update'
-  get '/product/:id', to: 'product#filter'
+  get '/product', to: 'product#show', as: :show_product 
+  get '/product/new', to: 'product#new', as: :new_product 
+  post 'products', to: 'product#create', as: :products
+  get '/product/:id/edit', to: 'product#edit', as: :edit_product 
+  put '/product/:id', to: 'product#update', as: :update_product 
+  get '/product/:id/filter', to: 'product#filter', as: :filter_product 
+  delete '/product/:id', to: 'product#destroy', as: :delete_product
+  get 'my_legos', to: 'product#my_legos'
 
-  delete '/product/:id', to: 'product#destroy'
 
   #request
   get '/request', to: 'request#show'

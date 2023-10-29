@@ -16,11 +16,23 @@
 
             <p class="subtitle">
                     Revisa el listado de productos que otros usuarios han publicado.
-            <div class="notification is-warning">
-                <p class="subtitle">
-                    Página en Construcción
-                </p>
-            </div>
+            
+            <div class="columns is-multiline">
+                <% @products.each do |product| %>
+                    <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-content">
+                        <div class="content">
+                            <h2><%= product.name %></h2>
+                            <p><%= product.description %></p>
+                            <%= cl_image_tag(product.image, width: 50, height: 50, crop: "fill") %>
+                            <!-- Puedes agregar más detalles o links a páginas de detalle del producto si lo deseas -->
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                <% end %>
+                </div>
         </div>
     </section>
 </body>
