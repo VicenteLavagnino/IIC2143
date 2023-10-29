@@ -1,4 +1,4 @@
 class PerfilController < ApplicationController
-    def gestionar_perfil
-    end
+  def gestionar_perfil
+  end
 end

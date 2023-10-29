@@ -18,7 +18,7 @@ class MessageTest < ActiveSupport::TestCase
     @chat = Chat.create(
         user1: @user,
         user2: @user2
-    )
+      )
 
     @message = Message.new(
       user: @user,
