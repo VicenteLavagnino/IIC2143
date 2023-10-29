@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :products
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +11,9 @@ class User < ApplicationRecord
   #has_many :chats
   #has_many :messages, through: :chats, dependent: :destroy
   validates_format_of :phone_number, with: /\A\+56 9 \d{4} \d{4}\z/, message: "debe estar en el formato +56 9 **** ****"
+
+  has_many :user_reports
+
   before_save :set_admin_status
 
   has_many :chats_as_user1, class_name: 'Chat', foreign_key: 'user1_id', dependent: :destroy
@@ -31,3 +35,4 @@ class User < ApplicationRecord
     self.admin = true if self.email == 'cris.dmaass@gmail.com'
   end
 end
+

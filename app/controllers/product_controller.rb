@@ -1,4 +1,9 @@
 class ProductController < ApplicationController
+
+  def new
+    @product = Product.new
+  end
+  
   def show
     @products = Product.all
       render json: @products
@@ -6,12 +11,14 @@ class ProductController < ApplicationController
     
   def create
     @product = Product.new(product_params)
-      if @product.save
-        render json: @product
-      else
-        render json: @product.errors, status: :unprocessable_entity
-      end
+    @product.user = current_user
+    if @product.save
+      redirect_to explora_path, notice: 'Producto creado con éxito.'
+    else
+      render json: @product.errors, status: :unprocessable_entity
+    end
   end
+  
 
   def update
     @product = Product.find(params[:id])
@@ -29,12 +36,19 @@ class ProductController < ApplicationController
     
   def destroy
     @product = Product.find(params[:id])
-    if @product
-      @product.destroy
 
-    end
+    @product.destroy
+    redirect_to my_legos_path, notice: 'Producto eliminado con éxito.'
+  end
+  
+
+  def my_legos
+    @products = current_user.products
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :description, :image, :set)
