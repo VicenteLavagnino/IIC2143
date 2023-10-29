@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, :phone_number, :mail, :password, presence: true
+  validates :name, :phone_number, :email, :password, presence: true
 
   has_many :products
   has_many :requests
@@ -19,7 +19,7 @@ class User < ApplicationRecord
   def all_messages
     Message.joins(:chat).where("chats.user1_id = ? OR chats.user2_id = ?", id, id)
   end
-  
+
   def timeout_in
     if admin?
       15.minutes
