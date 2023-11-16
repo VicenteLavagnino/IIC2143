@@ -1,5 +1,19 @@
 class ProductController < ApplicationController
 
+  def index
+    @products = Product.all
+
+    # Búsqueda
+    if params[:search].present?
+      @products = @products.where("name LIKE :search OR description LIKE :search", search: "%#{params[:search]}%")
+    end
+
+    # Ordenamiento
+    if params[:sort].present?
+      @products = @products.order(params[:sort])
+    end
+  end
+
   def new
     @product = Product.new
   end

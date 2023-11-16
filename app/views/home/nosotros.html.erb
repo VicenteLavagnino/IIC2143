@@ -24,37 +24,54 @@
         .card-footer-item {
             justify-content: center;
         }
+
+        /* Estilos adicionales para la caja de la cita */
+        .quote-box {
+            padding: 2rem;
+            margin: 2rem 0;
+            background-color: #f5f5f5; /* Color de fondo suave para la caja */
+            border-left: 5px solid #00d1b2; /* Borde izquierdo para destacar */
+            font-style: italic; /* Texto en cursiva */
+            font-size: 1.5rem; /* Tamaño del texto */
+            text-align: left; /* Alineación del texto */
+        }
     </style>
 </head>
 <body>
-    <section class="section" style="background-color: #f0f0f0;">
-    <div class="container has-text-centered">
-        <div class="columns is-centered">
-            <div class="column is-8">
-                <h1 class="title" style="color: #00d1b2; font-size: 3rem;">
-                    Sobre nosotros
-                </h1>
-                <p class="subtitle" style="font-size: 1.5rem;">
+    <section class="section">
+        <div class="container has-text-centered">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <h1 class="title" style="color: #00d1b2; font-size: 3rem;">
+                        Sobre nosotros
+                    </h1>
+                    <!-- Caja para la cita del Product Owner -->
+                    <div class="quote-box">
+                        "Construimos más que simples bloques, edificamos experiencias inolvidables."
+                        <br>- Nicolás Fernández, Product Owner
+                    </div>
+
+                    <p class="subtitle" style="font-size: 1.5rem; margin-top: 5px;">
                     En Ba Zar nos dedicamos a ofrecer una plataforma para que los usuarios puedan intercambiar sus legos.
-                </p>
-                <figure class="image is-128x128 is-inline-block">
-                    <img src="imagen_lego.png" alt="LEGO" class="is-rounded">
-                </figure>
-                <p style="margin-top: 20px;">
-                    Somos un equipo de excelencia comprometido en ofrecer la mejor experiencia a nuestros usuarios y estamos constantemente mejorando nuestro sitio.
-                </p>
-                <a class="button is-primary is-large" href="/trabaja" style="margin-top: 30px;">
-                    Trabaja aquí
-                </a>
+                    </p>
+                    <figure>
+                        <%= image_tag 'imagen_lego.png', alt: 'figuras de legos', class: 'is-rounded' %>
+                    </figure>
+                    <p class="subtitle" style="margin-top: 20px;">
+                        Somos un equipo de excelencia comprometido en ofrecer la mejor experiencia a nuestros usuarios y estamos constantemente mejorando nuestro sitio.
+                    </p>
+                    <a class="button is-primary is-large" href="/trabaja" style="margin-top: 30px;">
+                        Trabaja con nosotros
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
+    <!-- Sección de equipo -->
     <section class="section">
         <div class="container">
-            <h2 class="title has-text-centered">Conoce a Nuestro Equipo</h2>
+            <h2 class="title has-text-centered" style="color: #00d1b2; font-size: 3rem;">Conoce a Nuestro Equipo</h2>
             <div class="columns is-multiline">
                 <!-- Tarjetas para cada miembro del equipo -->
                 <!-- Product Owner - Nicolás Fernandez -->
@@ -63,10 +80,10 @@
                         <div class="card-content profile-card">
                             <div class="profile-image">
                                 <figure class="image is-128x128">
-                                    <img src="https://via.placeholder.com/128" alt="Nicolás Fernandez" class="is-rounded">
+                                    <%= image_tag 'zar.png', alt: 'Nicolás Fernández', class: 'is-rounded' %>
                                 </figure>
                             </div>
-                            <h3 class="title is-4">Nicolás Fernandez</h3>
+                            <h3 class="title is-4">Nicolás Fernández</h3>
                             <p class="subtitle is-6">Product Owner</p>
                         </div>
                         <footer class="card-footer profile-footer">
@@ -81,7 +98,7 @@
                         <div class="card-content profile-card">
                             <div class="profile-image">
                                 <figure class="image is-128x128">
-                                    <img src="https://via.placeholder.com/128" alt="Vicente Lavagnino" class="is-rounded">
+                                   <%= image_tag 'vicho.png', alt: 'Vicente Lavagnino', class: 'is-rounded' %>
                                 </figure>
                             </div>
                             <h3 class="title is-4">Vicente Lavagnino</h3>
@@ -99,7 +116,7 @@
                         <div class="card-content profile-card">
                             <div class="profile-image">
                                 <figure class="image is-128x128">
-                                    <img src="https://via.placeholder.com/128" alt="Cristóbal Donoso" class="is-rounded">
+                                    <%= image_tag 'cris.png', alt: 'Cristóbal Donoso', class: 'is-rounded' %>
                                 </figure>
                             </div>
                             <h3 class="title is-4">Cristóbal Donoso</h3>

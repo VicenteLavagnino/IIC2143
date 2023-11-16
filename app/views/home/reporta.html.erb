@@ -1,51 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <style>
+        .warning-card {
+            box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+            border-radius: 10px;
+            background-color: #fff3cd; /* Tonalidad amarilla de fondo para la tarjeta */
+            border-left: 4px solid #ffca2c; /* Banda lateral de advertencia */
+        }
+
+        .title, .card-header-title {
+            color: #d32f2f; /* Color rojo para los títulos */
+            font-size: 2.5rem; /* Un tamaño un poco menor para el título */
+        }
+
+        .notification.is-warning {
+            background-color: #ffdd57;
+            border-radius: 10px;
+            border-left: 4px solid #ffca2c; /* Banda lateral de advertencia para la notificación */
+        }
+
+        .button.is-primary {
+            background-color: #d32f2f; /* Color rojo para el botón */
+            border-color: transparent;
+            border-radius: 10px;
+        }
+
+        .button.is-primary:hover {
+            background-color: #b71c1c; /* Un tono más oscuro de rojo al pasar el mouse */
+        }
+    </style>
 </head>
 <body>
     <section class="section">
         <div class="container has-text-centered">
             <h2 class="title">
-                Reportar un Problema
+                Reporta un Problema
             </h2>
-            <div class="content">
-                <p>
-                    Si has encontrado algún problema en nuestro sitio web o crees que un usuario está cometiendo malas prácticas o conductas mediante nuetra página, por favor, repórtalo para que podamos solucionarlo lo antes posible o tomar las medidas necesarias.
-                </p>
-            </div>
-            <div class="notification is-warning">
+                <%= image_tag 'logo.png', alt: 'figuras de legos', class: 'is-rounded' %>            <div class="notification is-warning" style="margin-top: 20px;">
                 <p class="subtitle">
-                    Página en Construcción
+                    Si has encontrado algún problema en nuestro sitio web o crees que un usuario está cometiendo malas prácticas, por favor, repórtalo para que podamos solucionarlo lo antes posible o tomar las medidas necesarias.
                 </p>
             </div>
             <div class="columns is-centered">
                 <div class="column is-half">
-                    <form>
-                        <div class="field">
-                            <label class="label">Nombre</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Tu nombre">
-                            </div>
+                    <!-- Tarjeta de advertencia para el formulario -->
+                    <div class="warning-card">
+                        <div class="card-content">
+                            <form>
+                                <div class="field">
+                                    <label class="label">Nombre</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Tu nombre">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Correo Electrónico</label>
+                                    <div class="control">
+                                        <input class="input" type="email" placeholder="Tu correo electrónico">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Mensaje</label>
+                                    <div class="control">
+                                        <textarea class="textarea" placeholder="Escribe tu mensaje aquí"></textarea>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-primary">Enviar Reporte</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="field">
-                            <label class="label">Correo Electrónico</label>
-                            <div class="control">
-                                <input class="input" type="email" placeholder="Tu correo electrónico">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Descripción del Problema</label>
-                            <div class="control">
-                                <textarea class="textarea" placeholder="Describe el problema que has encontrado"></textarea>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button class="button is-primary">Enviar Reporte</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
