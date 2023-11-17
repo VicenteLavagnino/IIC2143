@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/product', to: 'product#show', as: :show_product 
   get '/product/new', to: 'product#new', as: :new_product 
   post 'products', to: 'product#create', as: :products
+  get '/products', to: 'products#index'
   get '/product/:id/edit', to: 'product#edit', as: :edit_product 
   put '/product/:id', to: 'product#update', as: :update_product 
   get '/product/:id/filter', to: 'product#filter', as: :filter_product 
