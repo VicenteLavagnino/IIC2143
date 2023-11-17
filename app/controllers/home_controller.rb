@@ -1,9 +1,18 @@
 class HomeController < ApplicationController
   def index
+    @latest_legos = Product.order(created_at: :desc).limit(5)
   end
 
   def explora
     @products = Product.all
+    
+    if params[:search].present?
+      @products = @products.where("name LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+
+    if params[:sort].present?
+      @products = @products.order(params[:sort])
+    end
   end
 
   def nosotros
