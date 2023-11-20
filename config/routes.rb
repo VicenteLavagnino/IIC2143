@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :chats do
     resources :messages, only: [:create]
   end
-  
+  resources :offers, only: [:create, :destroy]
 
   get '/explora', to: 'home#explora'
   get '/nosotros', to: 'home#nosotros'
@@ -18,8 +18,10 @@ Rails.application.routes.draw do
 
   get '/chat', to: 'home#chat', as: 'chat_lobby'
   get '/chat/:user_id', to: 'home#chat', as: 'start_chat'
+  
+  delete 'offer_delete/:id', to: 'offers#destroy', as: 'offer_delete'
 
-
+  get 'exchange_lobby', to: 'exchanges#index', as: 'exchange_lobby''
 
   get '/perfil/gestionar_perfil', to: 'perfil#gestionar_perfil', as: :gestionar_perfil
 
@@ -33,6 +35,8 @@ Rails.application.routes.draw do
   
   get '/product', to: 'product#show', as: :show_product 
   get '/product/new', to: 'product#new', as: :new_product 
+  get '/explora/:id', to: 'product#show', as: :explora_product
+
   post 'products', to: 'product#create', as: :products
   get '/products', to: 'products#index'
   get '/product/:id/edit', to: 'product#edit', as: :edit_product 
@@ -40,6 +44,9 @@ Rails.application.routes.draw do
   get '/product/:id/filter', to: 'product#filter', as: :filter_product 
   delete '/product/:id', to: 'product#destroy', as: :delete_product
   get 'my_legos', to: 'product#my_legos'
+
+  get '/products/:product_id/offers/new', to: 'offers#new', as: :new_product_offer
+  post '/products/:product_id/offers', to: 'offers#create', as: :product_offers
 
   #request
   get '/request', to: 'request#show'
@@ -73,6 +80,8 @@ Rails.application.routes.draw do
   get '/chatuser/:id', to: 'chatuser#filter'
 
   delete '/chatuser/:id', to: 'chatuser#destroy'
+
+  put '/offers/:id/accept', to: 'offers#accept', as: :accept_offer
 
   get 'minifigures', to: 'minifigures#index', as: 'minifigures'
 

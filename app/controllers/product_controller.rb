@@ -19,8 +19,8 @@ class ProductController < ApplicationController
   end
   
   def show
-    @products = Product.all
-      render json: @products
+    @product = Product.find(params[:id])
+    @offers = @product.offers.includes(:user)
   end
     
   def create
