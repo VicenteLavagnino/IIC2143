@@ -13,14 +13,123 @@
         }
     </style>
 </head>
+<style>
+        .card {
+            box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+            border-radius: 10px; /* Bordes redondeados para la caja del formulario */
+            background-color: #f5f5f5; /* Color de fondo gris claro para la caja */
+        }
+
+        .title {
+            color: #00d1b2; /* Color del título principal */
+            font-size: 3rem; /* Tamaño del título */
+        }
+
+        .card-header-title {
+            color: #00d1b2; /* Color del título del formulario */
+            font-size: 2rem; /* Tamaño reducido para el título del formulario */
+            background-color: #f5f5f5; /* Color de fondo gris claro para el título del formulario */
+        }
+
+
+        .notification.is-warning {
+            background-color: #ffdd57;
+            border-radius: 10px; /* Bordes redondeados para la notificación */
+        }
+
+        .button.is-primary {
+            background-color: #00d1b2;
+            border-color: transparent;
+            border-radius: 10px; /* Bordes redondeados para el botón */
+        }
+
+        .button.is-primary:hover {
+            background-color: #008c76;
+        }
+
+        /* Personalización del select y el botón */
+        .select, .button.is-info {
+            margin-bottom: 10px; /* Espacio debajo de los elementos */
+        }
+
+        .select select {
+            border: 1px solid #00d1b2; /* Borde con el color de tu tema */
+            box-shadow: none; /* Remueve cualquier sombra por defecto */
+        }
+
+        .button.is-info {
+            background-color: #00d1b2; /* Color de fondo que usas en otros botones */
+            border-color: #00d1b2; /* Color del borde igual al de fondo */
+        }
+
+        .button.is-info:hover {
+            background-color: #008c76; /* Color al pasar el ratón más oscuro */
+            border-color: #008c76; /* Color del borde al pasar el ratón */
+        }
+
+        /* Ajustes para que el select y el botón tengan el mismo tamaño */
+        .select:not(.is-multiple):not(.is-loading)::after {
+            border-color: #00d1b2; /* Color del ícono del desplegable */
+        }
+
+        .field.has-addons .control {
+            margin-right: 5px; /* Espacio entre el select y el botón */
+        }
+
+        .select, .button.is-info {
+            height: 2.5em; /* Altura uniforme para select y botón */
+        }
+
+        .select select, .button.is-info {
+            padding-left: 1em; /* Espaciado interno para el select */
+            padding-right: 1em; /* Espaciado interno para el botón */
+        }
+
+        /* Asegúrate de que el select y el botón estén alineados verticalmente */
+        .select, .button.is-info {
+            vertical-align: top;
+        }
+        
+    </style>
+    
 <body>
     <section class="section">
         <div class="container has-text-centered">
-            <h1 class="title">
-                Explorar Catálogo de Productos
-            </h1>
 
+            <h1 class="title">Explorar Catálogo de Productos</h1>
+            <p class="subtitle" style="margin-top: 20px;">Revisa el listado de productos que otros usuarios han publicado.</p>
             <%= image_tag('logo.png', alt: 'Logo', width: '75', height: 'auto') %>
+
+            <!-- Fila para el sort y la búsqueda -->
+            <div class="columns is-centered" style="margin-top: 20px;">
+                <!-- Sort de productos -->
+                <div class="column is-narrow">
+                    <%= form_tag(explora_path, method: :get, class: "sort-form") do %>
+                        <div class="field has-addons">
+                            <div class="control">
+                                <%= select_tag :sort, options_for_select([['Nombre', 'name'], ['Fecha de publicación', 'created_at'], ['Usuario', 'user'], ['Set', 'set']]), class: 'select', include_blank: 'Ordenar por' %>
+                            </div>
+                            <div class="control">
+                                <%= submit_tag 'Ordenar', class: 'button is-primary' %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+
+                <!-- Formulario de búsqueda -->
+                <div class="column is-half">
+                    <%= form_tag(explora_path, method: :get, class: "search-form") do %>
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <%= text_field_tag :search, params[:search], class: 'input', placeholder: 'Buscar por nombre o descripción...' %>
+                            </div>
+                            <div class="control">
+                                <%= submit_tag 'Buscar', class: 'button is-primary' %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
 
             <p class="subtitle">
                 Revisa el listado de productos que otros usuarios han publicado.
@@ -40,6 +149,7 @@
                                 </div>
                             </div>
                         <% end %>
+
                     </div>
                 <% end %>
             </div>

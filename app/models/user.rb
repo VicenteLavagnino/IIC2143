@@ -4,14 +4,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, :phone_number, :email, :password, presence: true
+  validates :name, presence: true
 
   has_many :products, dependent: :destroy
   has_many :requests
   has_many :offers, dependent: :destroy
   #has_many :chats
   #has_many :messages, through: :chats, dependent: :destroy
-  validates_format_of :phone_number, with: /\A\+56 9 \d{4} \d{4}\z/, message: "debe estar en el formato +56 9 **** ****"
+  validates_format_of :phone_number, with: /\A\+56 9 \d{4} \d{4}\z/, message: "debe estar en el formato +56 9 **** ****", on: :update
 
   has_many :user_reports
 

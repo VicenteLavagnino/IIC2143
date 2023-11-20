@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/trabaja', to: 'home#trabaja'
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
+  get '/descubre', to: 'home#descubre'
 
   get '/chat', to: 'home#chat', as: 'chat_lobby'
   get '/chat/:user_id', to: 'home#chat', as: 'start_chat'
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   get '/explora/:id', to: 'product#show', as: :explora_product
 
   post 'products', to: 'product#create', as: :products
+  get '/products', to: 'products#index'
   get '/product/:id/edit', to: 'product#edit', as: :edit_product 
   put '/product/:id', to: 'product#update', as: :update_product 
   get '/product/:id/filter', to: 'product#filter', as: :filter_product 
@@ -81,5 +83,6 @@ Rails.application.routes.draw do
 
   put '/offers/:id/accept', to: 'offers#accept', as: :accept_offer
 
+  get 'minifigures', to: 'minifigures#index', as: 'minifigures'
 
 end

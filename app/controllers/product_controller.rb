@@ -1,5 +1,19 @@
 class ProductController < ApplicationController
 
+  def index
+    @products = Product.all
+
+    # Búsqueda
+    if params[:search].present?
+      @products = @products.where("name LIKE :search OR description LIKE :search", search: "%#{params[:search]}%")
+    end
+
+    # Ordenamiento
+    if params[:sort].present?
+      @products = @products.order(params[:sort])
+    end
+  end
+
   def new
     @product = Product.new
   end
@@ -12,6 +26,12 @@ class ProductController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+
+    if params[:product][:image].present?
+      uploaded_image = Cloudinary::Uploader.upload(params[:product][:image])
+      @product.image = uploaded_image['url']
+    end
+
     if @product.save
       redirect_to explora_path, notice: 'Producto creado con éxito.'
     else
