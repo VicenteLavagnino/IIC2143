@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   
   delete 'offer_delete/:id', to: 'offers#destroy', as: 'offer_delete'
 
-  get 'exchange_lobby', to: 'exchanges#index', as: 'exchange_lobby''
+  get 'exchange_lobby', to: 'exchanges#index', as: 'exchange_lobby'
 
   get '/perfil/gestionar_perfil', to: 'perfil#gestionar_perfil', as: :gestionar_perfil
 
