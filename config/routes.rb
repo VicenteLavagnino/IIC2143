@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/trabaja', to: 'home#trabaja'
   get '/contacto', to: 'home#contacto'
   get '/reporta', to: 'home#reporta'
+  get '/descubre', to: 'home#descubre'
 
   get '/chat', to: 'home#chat', as: 'chat_lobby'
   get '/chat/:user_id', to: 'home#chat', as: 'start_chat'
@@ -73,5 +74,6 @@ Rails.application.routes.draw do
 
   delete '/chatuser/:id', to: 'chatuser#destroy'
 
+  get 'minifigures', to: 'minifigures#index', as: 'minifigures'
 
 end
