@@ -2,12 +2,20 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <style>
+        .card-link {
+            text-decoration: none; /* Quita el subrayado de los enlaces */
+            color: inherit; /* Mantiene el color del texto original */
+        }
+
+        .card-link:hover {
+            background-color: #f0f0f0; /* Cambia el fondo al pasar el ratón por encima para indicar que es clickeable */
+        }
+    </style>
 </head>
 <body>
     <section class="section">
         <div class="container has-text-centered">
-        
-
             <h1 class="title">
                 Explorar Catálogo de Productos
             </h1>
@@ -15,23 +23,26 @@
             <%= image_tag('logo.png', alt: 'Logo', width: '75', height: 'auto') %>
 
             <p class="subtitle">
-                    Revisa el listado de productos que otros usuarios han publicado.
-            
+                Revisa el listado de productos que otros usuarios han publicado.
+            </p>
+
             <div class="columns is-multiline">
                 <% @products.each do |product| %>
                     <div class="column is-one-third">
-                    <div class="card">
-                        <div class="card-content">
-                        <div class="content">
-                            <h2><%= product.name %></h2>
-                            <p><%= product.description %></p>
-                            <%= cl_image_tag(product.image, width: 50, height: 50, crop: "fill") %>
-                        </div>
-                        </div>
-                    </div>
+                        <%= link_to explora_product_path(id: product.id), class: "card-link" do %>
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="content">
+                                        <h2><%= product.name %></h2>
+                                        <p><%= product.description %></p>
+                                        <%= cl_image_tag(product.image, width: 50, height: 50, crop: "fill") %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                 <% end %>
-                </div>
+            </div>
         </div>
     </section>
 </body>
