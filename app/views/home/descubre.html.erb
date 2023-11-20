@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+</head>
+<style>
+    
+    .minifigures-grid .row {
+    display: flex;
+    }
+
+    .minifigures-grid .column {
+    flex: 20%;
+    padding: 10px;
+    text-align: center;
+    }
+
+    .title {
+                color: #00d1b2;
+                font-size: 3rem;
+            }
+
+    .button.is-primary {
+        background-color: #00d1b2;
+        border-color: transparent;
+        border-radius: 10px;
+    }
+
+    .button.is-primary:hover {
+        background-color: #008c76;
+    }
+
+    .minifigure-card {
+        display: block;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .minifigure-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 5px;
+    }
+    
+    .minifigure-name {
+        max-width: 100%;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+</style>
+    
+<body>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <h1 class="title">Descubre minifiguras</h1>
+        <p class="subtitle" style="margin-top: 20px;">Encuentra todas las minifiguras que LEGO ha creado.</p>
+        <%= image_tag('logo.png', alt: 'Logo', width: '75', height: 'auto') %>
+        <p class="subtitle" style="margin-top: 20px;">Busca y haz click en una minifigura para ver si está actualmente en el BaZar.</p>
+
+        <!-- Estructura de filas y columnas para centrar el formulario -->
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <%= form_tag minifigures_path, method: :get do %>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <%= text_field_tag :search, params[:search], class: 'input', placeholder: 'Buscar por nombre' %>
+                        </div>
+                        <div class="control">
+                            <%= submit_tag 'Buscar', class: 'button is-primary' %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if params[:search].present? %>   
+        <% if @minifigures.present? %>
+            <div class="minifigures-grid columns is-multiline">
+                <% @minifigures.each do |minifigure| %>
+                    <div class="column is-one-fifth">
+                        <%= link_to explora_path(search: minifigure["name"]), class: "button is-primary minifigure-card" do %>
+                            <% if minifigure["set_img_url"].present? %>
+                                <%= image_tag minifigure["set_img_url"], alt: minifigure["name"], class: "minifigure-image" %>
+                            <% else %>
+                                <%= image_tag 'LegoTemplate.png', alt: 'Imagen no disponible', class: "minifigure-image" %>
+                            <% end %>
+                            <p class="minifigure-name" style="white-space: normal;" ><%= minifigure["name"] %></p>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        <% else %>
+            <p>No se encontraron minifiguras.</p>
+        <% end %>
+    <% end %>
+</body>
+
+</html>
