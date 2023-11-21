@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_150050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "motivo"
     t.index ["product_id"], name: "index_product_reports_on_product_id"
   end
 
@@ -110,6 +111,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_wishlists_on_product_id"
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "offers", "products"
@@ -119,4 +129,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
   add_foreign_key "requests", "products"
   add_foreign_key "reviews", "products"
   add_foreign_key "user_reports", "users"
+  add_foreign_key "wishlists", "products"
+  add_foreign_key "wishlists", "users"
 end

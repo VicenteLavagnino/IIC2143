@@ -13,7 +13,7 @@ class MinifiguresController < ApplicationController
 
   def fetch_minifigures(search_query)
     uri = URI('https://rebrickable.com/api/v3/lego/minifigs/')
-    params = {search: search_query }
+    params = {search: search_query, page_size: 1000 }
     uri.query = URI.encode_www_form(params)
 
     request = Net::HTTP::Get.new(uri)
