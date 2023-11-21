@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <!-- Estilos y Scripts Externos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+    <!-- Estilos Internos -->
     <style>
         .user-select {
             display: block;
@@ -66,15 +68,24 @@
             flex-shrink: 0;
         }
 
+        .user-row {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-select {
+            flex-grow: 1; 
+        }
     </style>
 </head>
 
 <body>
+    <!-- Contenido Principal -->
     <section class="section">
         <div class="container">
             <h1 class="title has-text-centered">Lobby de Mensajería</h1>
             <div class="columns">
-                <!-- Columna Izquierda -->
+                <!-- Columna Izquierda: Lista de Usuarios y Chats -->
                 <div class="column is-one-third">
                     <!-- Lista de Usuarios -->
                     <div class="box">
@@ -82,77 +93,87 @@
                         <% if @users.present? %>
                         <% @users.each do |user| %>
                         <% next if user == current_user %>
-                        <a class="user-select" href="<%= start_chat_path(user.id) %>">
-                            <p><%= user.name %></p>
-                        </a>
+                            <div class="user-row">
+                                <a class="user-select" href="<%= start_chat_path(user.id) %>">
+                                    <p><%= user.name %></p>
+                                </a>
+                                <div class="dropdown is-right is-hoverable">
+                                    <div class="dropdown-trigger">
+                                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                            <span>&#x22EE;</span>
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                        <div class="dropdown-content">
+                                            <a class="dropdown-item" onclick="openModal(<%= user.id %>); return false;">
+                                                Reportar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <% end %>
                         <% else %>
                         <p>Eres el único perfil que existe (literal).</p>
                         <% end %>
                     </div>
 
+                    <!-- Lista de Mis Chats -->
                     <div class="box">
-    <h3 class="subtitle">Mis Chats</h3>
-    
-    <% chats_with_messages = @chats.select { |chat| (chat.user1_id == current_user.id || chat.user2_id == current_user.id) && chat.messages.any? } %>
-    
-    <% if chats_with_messages.any? %>
-        <% chats_with_messages.each do |chat| %>
-            <% recipient = chat.user1_id == current_user.id ? User.find(chat.user2_id) : User.find(chat.user1_id) %>
-            <a href="<%= start_chat_path(recipient.id) %>">
-                <p><%= recipient.name %></p>
-            </a>
-        <% end %>
-    <% else %>
-        <p>No tienes chats activos.</p>
-    <% end %>
-</div>
-
+                        <h3 class="subtitle">Mis Chats</h3>
+                        <% chats_with_messages = @chats.select { |chat| (chat.user1_id == current_user.id || chat.user2_id == current_user.id) && chat.messages.any? } %>
+                        <% if chats_with_messages.any? %>
+                            <% chats_with_messages.each do |chat| %>
+                                <% recipient = chat.user1_id == current_user.id ? User.find(chat.user2_id) : User.find(chat.user1_id) %>
+                                <a href="<%= start_chat_path(recipient.id) %>">
+                                    <p><%= recipient.name %></p>
+                                </a>
+                            <% end %>
+                        <% else %>
+                            <p>No tienes chats activos.</p>
+                        <% end %>
+                    </div>
                 </div>
 
                 <!-- Columna Derecha: Chat Abierto -->
                 <div class="column is-two-thirds">
                     <div class="box">
                         <% if @recipient %>
-                        <h2 class="recipient-name"><%= @recipient.name %></h2>
+                            <h2 class="recipient-name"><%= @recipient.name %></h2>
                         <% end %>
 
                         <div class="chat-box">
-                            <% if @chat %> <!-- Comprobar si hay un chat en primer lugar -->
-                            <% if @messages&.any? %>
-                            <% previous_user = nil %> 
-                            <% @messages.each do |message| %>
-                            <% if message.user == current_user %>
-                            <div class="message sent">
-                                <%= message.content %>
-                            </div>
+                            <% if @chat %>
+                                <% if @messages&.any? %>
+                                    <% @messages.each do |message| %>
+                                        <% if message.user == current_user %>
+                                            <div class="message sent">
+                                                <%= message.content %>
+                                            </div>
+                                        <% else %>
+                                            <div class="message received">
+                                                <%= message.content %>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                <% else %>
+                                    <p>COMIENZA A CHATEAR</p>
+                                <% end %>
                             <% else %>
-                            <div class="message received">
-                                <%= message.content %>
-                            </div>
-                            <% end %>
-                            <% end %>
-                            <% else %> 
-                            <!-- Si hay un chat pero todavía no tiene mensajes -->
-                            <p>COMIENZA A CHATEAR</p>
-                            <% end %>
-                            <% else %>
-                            <!-- Si no hay chat en absoluto -->
-                            <p>CHATEA CON ALGUIEN</p>
+                                <p>CHATEA CON ALGUIEN</p>
                             <% end %>
                         </div>
 
                         <div class="message-input-area field has-addons">
                             <% if @chat %>
-                            <%= form_for [ @chat, @chat.messages.build ] do |f| %>
-                            <div class="control is-expanded">
-                                <%= f.text_area :content, placeholder: 'Escribe tu mensaje aquí...', rows: 4, class: 'textarea message-input' %>
-                            </div>
-                            <div class="control">
-                                <%= f.submit 'Enviar', class: 'button is-primary send-button' %>
-                            </div>
-                            <% end %>
-                            <% else %>
+                                <%= form_for [ @chat, @chat.messages.build ] do |f| %>
+                                    <div class="control is-expanded">
+                                        <%= f.text_area :content, placeholder: 'Escribe tu mensaje aquí...', rows: 4, class: 'textarea message-input' %>
+                                    </div>
+                                    <div class="control">
+                                        <%= f.submit 'Enviar', class: 'button is-primary send-button' %>
+                                    </div>
+                                <% end %>
                             <% end %>
                         </div>
                     </div>
@@ -160,10 +181,41 @@
             </div>
         </div>
     </section>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- Modal para Reportar Usuario -->
+    <div class="modal" id="reportModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Reportar Usuario</p>
+                <button class="delete" aria-label="close" onclick="closeModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <%= form_with model: UserReport.new, url: create_user_reports_path, id: 'reportUserForm', local: true do |f| %>
+                    <%= f.text_area :motivo, class: 'textarea', placeholder: 'Escribe el motivo del reporte aquí...' %>
+                    <%= f.hidden_field :user_id, id: 'modalUserId', value: '' %>
+                <% end %>
+            </section>
+            <footer class="modal-card-foot">
+                <%= button_tag type: 'submit', form: 'reportUserForm', class: 'button is-success' do %>
+                    Enviar
+                <% end %>
+                <button class="button" onclick="closeModal()">Cancelar</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        /* ... (Script sin cambios) ... */
+        function openModal(userId) {
+            document.getElementById('reportModal').classList.add('is-active');
+            document.getElementById('modalUserId').value = userId;
+        }
+
+        function closeModal() {
+            document.getElementById('reportModal').classList.remove('is-active');
+        }
+
     </script>
 </body>
-
 </html>

@@ -14,7 +14,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Usuario ID</th>
+          <th>Producto ID</th>
           <th>Motivo</th>
           <th>Acciones</th>
         </tr>
@@ -23,18 +23,21 @@
         <% @product_reports.each do |report| %>
           <tr>
             <td><%= report.id %></td>
-            <td><%= report.user_id %></td>
+            <td><%= report.product_id %></td>
             <td><%= report.motivo %></td>
             <td>
-              <button class="toggle-button" data-target="userProfile_<%= report.id %>">Ver</button>
-              <div id="userProfile_<%= report.id %>" style="display: none;">
-                <p><strong>Nombre:</strong> <%= report.user.name %></p>
-                <p><strong>Email:</strong> <%= report.user.email %></p>
-                <p><strong>Teléfono:</strong> <%= report.user.phone_number %></p>
-                <p><strong>Descripcion:</strong> <%= report.user.description %></p>
+              <button class="toggle-button" data-target="productDetails_<%= report.id %>">Ver Detalles</button>
+              <div id="productDetails_<%= report.id %>" style="display: none;">
+                <p><strong>Nombre del Producto:</strong> <%= report.product.name %></p>
+                <p><strong>Descripción del Producto:</strong> <%= report.product.description %></p>
+                <p><strong>Imagen del Producto:</strong></p>
+                <%= cl_image_tag(report.product.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
               </div>
-              <%= button_to 'Eliminar', delete_report_path(report), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'delete-button' %>
-            </td>
+              <%= button_to 'Saltar', delete_product_report_path(id: report.id, type: "Product"), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'button is-primary is-small fixed-width-button' %>
+              <%= button_to 'Borrar Publicación', delete_product_path(report.product), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'button is-danger is-small fixed-width-button' %>
+          </td>
+          
+          
           </tr>
         <% end %>
       </tbody>
@@ -74,6 +77,21 @@
   .delete-button:hover {
     background-color: #c0392b;
   }
+
+  .fixed-width-button {
+  width: 150px;
+  }
+
+  .toggle-button {
+  width: 150px;
+  background-color: #fofofo;
+  border: none;
+  }
+
+  .toggle-button:hover {
+    background-color: #d0d0d0;
+  }
+
 </style>
 
 <script>
