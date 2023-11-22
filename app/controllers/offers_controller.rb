@@ -10,40 +10,28 @@ class OffersController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @offers = @product.offers.includes(:user) # Asegúrate de incluir :user para evitar N+1 queries
-    @show_offer_button = @offers.any? { |offer| offer.status == 'En espera' }
   end
   
   
   def create
     @offer = @product.offers.build(offer_params)
+    uploaded_image = Cloudinary::Uploader.upload(params[:offer][:image])
+    @offer.image = uploaded_image['url']
+
     @offer.user = current_user # Asegúrate de que current_user esté definido
-  
+    @offer.state = "Propuesta"
     if @offer.save
-      # Utiliza el helper de ruta correcto que definiste para mostrar un producto
       redirect_to explora_product_path(id: @product.id)
     else
       render :new
     end
   end
-  def accept
-    @offer = Offer.find(params[:id])
-    # Lógica para aceptar la oferta
-    # Por ejemplo, cambiar el estado de la oferta y posiblemente del producto
-    
-    if @offer.update(state: 'aceptada')
-      redirect_to product_path(@offer.product), notice: 'Has aceptado la oferta y ahora procederás al intercambio.'
-    else
-      redirect_to product_path(@offer.product), alert: 'No se pudo aceptar la oferta.'
-    end
-  end
   def destroy
+    @offer = Offer.find(params[:id])
     @offer.destroy
-    respond_to do |format|
-      format.html { redirect_back(fallback_location: root_path) }
-      format.json { head :no_content }
-    end
+    redirect_to explora_product_path(id: @offer.product.id) # o cualquier otra página después de eliminar
   end
-
+  
   private
 
   def set_offer
@@ -61,6 +49,6 @@ class OffersController < ApplicationController
   end
 
   def offer_params
-    params.require(:offer).permit(:name, :description, :image, :state)
+    params.require(:offer).permit(:name, :description, :image, :set)
   end
 end

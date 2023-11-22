@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <style>
+      .section {
+          background-image: URL('2023-2-grupo-47\app\assets\images\fondo_exchange.png'); /* Sustituye con la URL de tu imagen */
+          background-size: cover;
+          background-position: center;
+          padding: 40px 20px;
+      }
+
+      .message-box {
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 8px;
+          padding: 20px;
+          text-align: center;
+          margin-bottom: 20px;
+      }
+
+      .message-box {
+        background: rgba(255, 255, 255, 0.8); /* Fondo ligeramente transparente para mejorar la legibilidad */
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .message-box h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .message-box .subtitle {
+        font-size: 18px;
+        color: #666;
+      }
+
+      .professional-message {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #444;
+      }
+
+      .buttons {
+        text-align: center;
+      }
+
+      .button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        text-decoration: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .explore-button {
+        background-color: #4CAF50; /* Green */
+      }
+      .buttons {
+          text-align: center;
+          display: flex;
+          justify-content: center; /* Asegura que los botones estén centrados */
+      }
+      .chat-button {
+        background-color: #008CBA; /* Blue */
+      }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <div class="message-box">
+            <h1>Intercambio Aceptado!</h1>
+            <p class="subtitle">Realiza el intercambio de manera segura y confiable.</p>
+            <p class="professional-message">
+                Al realizar un intercambio, recuerda proceder con precaución y respeto. Acuerda los detalles, como la fecha y el lugar, de manera clara y considerada. En caso de tener alguna duda o necesitar asistencia, no dudes en contactarnos. Tu seguridad y satisfacción son nuestra prioridad.
+            </p>
+        </div>
+        <div class="buttons">
+            <%= link_to 'Ir a Explorar', '/explora', class: 'button explore-button' %>
+            <%= link_to 'Habla con el ofertante!', start_chat_path(user_id: @user.id), class: 'button chat-button' %>
+        </div>
+    </section>
+</body>
+</html>

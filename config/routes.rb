@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :chats do
     resources :messages, only: [:create]
   end
+  
   resources :offers, only: [:create, :destroy]
+
 
   get '/explora', to: 'home#explora'
   get '/nosotros', to: 'home#nosotros'
@@ -21,7 +23,11 @@ Rails.application.routes.draw do
   
   delete 'offer_delete/:id', to: 'offers#destroy', as: 'offer_delete'
 
-  get 'exchange_lobby', to: 'exchanges#index', as: 'exchange_lobby'
+  get 'exchanges/confirmation/:id', to: 'exchanges#confirmation', as: 'exchange_confirmation'
+  
+  get 'exchange_lobby', to: 'exchanges#lobby_exchange', as: 'exchange_lobby'
+  post 'confirmar_intercambio/:id', to: 'exchanges#confirmar_intercambio', as: 'confirmar_intercambio'  
+  patch '/exchanges/:id/cancel', to: 'exchanges#cancel_exchange', as: 'cancel_exchange'
 
   get '/perfil/gestionar_perfil', to: 'perfil#gestionar_perfil', as: :gestionar_perfil
 
@@ -32,7 +38,6 @@ Rails.application.routes.draw do
   delete '/reports/:id', to: 'reports#product_report_destroy', as: :delete_product_report
   
 
-  #product
   
   get '/product', to: 'product#show', as: :show_product 
   get '/product/new', to: 'product#new', as: :new_product 
@@ -44,7 +49,7 @@ Rails.application.routes.draw do
   put '/product/:id', to: 'product#update', as: :update_product 
   get '/product/:id/filter', to: 'product#filter', as: :filter_product 
   delete '/product/:id', to: 'product#destroy', as: :delete_product
-  get 'my_legos', to: 'product#my_legos'
+  get 'my_legos', to: 'product#my_legos', as: :my_legos
 
   get '/products/:product_id/offers/new', to: 'offers#new', as: :new_product_offer
   post '/products/:product_id/offers', to: 'offers#create', as: :product_offers
@@ -82,7 +87,7 @@ Rails.application.routes.draw do
 
   delete '/chatuser/:id', to: 'chatuser#destroy'
 
-  put '/offers/:id/accept', to: 'offers#accept', as: :accept_offer
+
 
   get 'minifigures', to: 'minifigures#index', as: 'minifigures'
 

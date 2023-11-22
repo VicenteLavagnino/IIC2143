@@ -7,6 +7,16 @@
     
     <!-- Estilos Internos -->
     <style>
+    .user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info .image {
+  margin-right: 10px; /* Ajusta el espacio entre la imagen y el texto */
+}
+
+
         .user-select {
             display: block;
             padding: 10px;
@@ -91,28 +101,37 @@
                     <div class="box">
                         <h3 class="subtitle">Usuarios</h3>
                         <% if @users.present? %>
-                        <% @users.each do |user| %>
-                        <% next if user == current_user %>
-                            <div class="user-row">
-                                <a class="user-select" href="<%= start_chat_path(user.id) %>">
-                                    <p><%= user.name %></p>
-                                </a>
-                                <div class="dropdown is-right is-hoverable">
-                                    <div class="dropdown-trigger">
-                                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                            <span>&#x22EE;</span>
-                                        </button>
-                                    </div>
-                                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                        <div class="dropdown-content">
-                                            <a class="dropdown-item" onclick="openModal(<%= user.id %>); return false;">
-                                                Reportar
-                                            </a>
+                          <% @users.each do |user| %>
+                                <% next if user == current_user %>
+                                <div class="user-row">
+                                    <a class="user-select" href="<%= start_chat_path(user.id) %>">
+                                        <div class="user-info">
+                                            <!-- Imagen del Usuario -->
+                                            <% if user.image.present? %>
+                                                <%= cl_image_tag(user.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                                            <% else %>
+                                                <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+                                            <% end %>
+                                            <!-- Nombre y ID del Usuario -->
+                                            <p><%= user.name %> <span class="user-id">#<%= user.id %></span></p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown is-right is-hoverable">
+                                        <div class="dropdown-trigger">
+                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                <span>&#x22EE;</span>
+                                            </button>
+                                        </div>
+                                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                            <div class="dropdown-content">
+                                                <a class="dropdown-item" onclick="openModal(<%= user.id %>); return false;">
+                                                    Reportar
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <% end %>
+                            <% end %>
                         <% else %>
                         <p>Eres el único perfil que existe (literal).</p>
                         <% end %>
@@ -120,19 +139,33 @@
 
                     <!-- Lista de Mis Chats -->
                     <div class="box">
-                        <h3 class="subtitle">Mis Chats</h3>
-                        <% chats_with_messages = @chats.select { |chat| (chat.user1_id == current_user.id || chat.user2_id == current_user.id) && chat.messages.any? } %>
-                        <% if chats_with_messages.any? %>
-                            <% chats_with_messages.each do |chat| %>
-                                <% recipient = chat.user1_id == current_user.id ? User.find(chat.user2_id) : User.find(chat.user1_id) %>
-                                <a href="<%= start_chat_path(recipient.id) %>">
-                                    <p><%= recipient.name %></p>
-                                </a>
-                            <% end %>
-                        <% else %>
-                            <p>No tienes chats activos.</p>
-                        <% end %>
-                    </div>
+    <h3 class="subtitle">Mis Chats</h3>
+    
+    <% chats_with_messages = @chats.select { |chat| (chat.user1_id == current_user.id || chat.user2_id == current_user.id) && chat.messages.any? } %>
+    
+    <% if chats_with_messages.any? %>
+  <% chats_with_messages.each do |chat| %>
+    <% recipient = chat.user1_id == current_user.id ? User.find(chat.user2_id) : User.find(chat.user1_id) %>
+    <a href="<%= start_chat_path(recipient.id) %>">
+      <div class="user-info">
+        <!-- Imagen del Recipiente -->
+        <% if recipient.image.present? %>
+          <%= cl_image_tag(recipient.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
+        <% else %>
+          <%= image_tag('default_profile_icon.png', width: 30, height: 30, alt: 'Icono perfil', class: 'profile-icon') %>
+        <% end %>
+
+        <!-- Nombre y ID del Recipiente -->
+        <p><%= recipient.name %> <span class="recipient-id">#<%= recipient.id %></span></p>
+      </div>
+    </a>
+  <% end %>
+<% else %>
+  <p>No tienes chats activos.</p>
+<% end %>
+</div>
+
+
                 </div>
 
                 <!-- Columna Derecha: Chat Abierto -->
@@ -143,8 +176,10 @@
                         <% end %>
 
                         <div class="chat-box">
+
                             <% if @chat %>
                                 <% if @messages&.any? %>
+                                    <% previous_user = nil %> 
                                     <% @messages.each do |message| %>
                                         <% if message.user == current_user %>
                                             <div class="message sent">
@@ -159,6 +194,7 @@
                                 <% else %>
                                     <p>COMIENZA A CHATEAR</p>
                                 <% end %>
+
                             <% else %>
                                 <p>CHATEA CON ALGUIEN</p>
                             <% end %>
@@ -207,6 +243,7 @@
 
     <!-- Scripts -->
     <script>
+
         function openModal(userId) {
             document.getElementById('reportModal').classList.add('is-active');
             document.getElementById('modalUserId').value = userId;
