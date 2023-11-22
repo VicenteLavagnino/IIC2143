@@ -30,6 +30,7 @@
       <div class="navbar-start">
         <a class="navbar-item" href="/">Inicio</a>
         <a class="navbar-item" href="/explora">Explora</a>
+        <a class="navbar-item" href="/descubre">Descubre</a>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">Más</a>
@@ -58,7 +59,9 @@
               <%= link_to "Ver Reportes", user_reports_path, class: "button is-light" %>
             </div>
           <% end %>
-
+          <div class="navbar-item">
+            <%= link_to "Mis Intercambios", exchange_lobby_path, class: "button is-light" %>
+          </div>
           <div class="navbar-item">
             <%= link_to "Mis Chats", chat_lobby_path, class: "button is-light" %>
           </div>

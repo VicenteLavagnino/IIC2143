@@ -19,13 +19,19 @@ class ProductController < ApplicationController
   end
   
   def show
-    @products = Product.all
-      render json: @products
+    @product = Product.find(params[:id])
+    @offers = @product.offers.includes(:user)
   end
     
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+
+    if params[:product][:image].present?
+      uploaded_image = Cloudinary::Uploader.upload(params[:product][:image])
+      @product.image = uploaded_image['url']
+    end
+
     if @product.save
       redirect_to explora_path, notice: 'Producto creado con éxito.'
     else
@@ -50,7 +56,6 @@ class ProductController < ApplicationController
     
   def destroy
     @product = Product.find(params[:id])
-
     @product.destroy
     redirect_to my_legos_path, notice: 'Producto eliminado con éxito.'
   end

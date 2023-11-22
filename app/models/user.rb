@@ -6,11 +6,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true
 
-  has_many :products
+  has_many :products, dependent: :destroy
   has_many :requests
+  has_many :offers, dependent: :destroy
   #has_many :chats
   #has_many :messages, through: :chats, dependent: :destroy
-  validates_format_of :phone_number, with: /\A\+56 9 \d{4} \d{4}\z/, message: "debe estar en el formato +56 9 **** ****", on: :update
+  validates_format_of :phone_number, with: /\A\+56 9 \d{4} \d{4}\z/, 
+message: "debe estar en el formato +56 9 **** ****", on: :update
 
   has_many :user_reports
 
