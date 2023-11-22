@@ -28,27 +28,26 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-
                 <!-- Columna de Información del Producto -->
                 <div class="column is-half">
                     <div class="box">
-                      <div class="title-with-menu">
-                        <h1 class="title is-3"><%= @product.name %></h1>
-                        <div class="dropdown is-right is-hoverable">
-                            <div class="dropdown-trigger">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                    <span>&#x22EE;</span>
-                                </button>
-                            </div>
-                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                <div class="dropdown-content">
-                                    <a href="#" class="dropdown-item" onclick="openModal(); return false;">
-                                        Reportar
-                                    </a>
+                        <div class="title-with-menu">
+                            <h1 class="title is-3"><%= @product.name %></h1>
+                            <div class="dropdown is-right is-hoverable">
+                                <div class="dropdown-trigger">
+                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                        <span>&#x22EE;</span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <a href="#" class="dropdown-item" onclick="openModal(); return false;">
+                                            Reportar
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                      </div>
                         <div class="box image-container" style="height: 300px;">
                             <%= cl_image_tag(@product.image, class: "product-image") %>
                         </div>
@@ -68,12 +67,6 @@
                             <%= link_to "Subir Oferta", new_product_offer_path(product_id: @product.id), class: "button is-primary" %>
                         <% end %>
 
-                        <% if !@show_offer_button && user_signed_in? %>
-                            <div class="notification is-danger">
-                                Hay una oferta aceptada - Esperando confirmación
-                            </div>
-                        <% end %>
-
                         <!-- Lista de ofertas -->
                         <% @offers.each do |offer| %>
                             <div class="box">
@@ -88,7 +81,7 @@
                                     <div class="media-right">
                                         <p>Ofrecido por: <%= offer.user.name %></p>
                                         <p>Estado: <%= offer.state %></p>
-                                        <% if @show_offer_button && user_signed_in? && current_user == @product.user %>
+                                        <% if user_signed_in? && current_user == @product.user %>
                                             <%= link_to 'Aceptar Oferta', '#', class: 'button is-primary', onclick: "acceptOffer(#{offer.user.id}); return false;" %>
                                         <% end %>
                                         <% if user_signed_in? && current_user == offer.user %>
@@ -102,101 +95,9 @@
                         <% end %>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-        <!-- Columna de Ofertas Disponibles -->
-<div class="column is-half">
-  <div class="box">
-    <h2 class="title">Ofertas</h2>
-    
-
-    <!-- Botón para Subir Ofertas -->
-    
-    <% if user_signed_in? && current_user != @product.user %>
-        <%= link_to "Subir Oferta", new_product_offer_path(product_id: @product.id), class: "button is-primary" %>
-     <% end %>
-     <% if @offers.any? { |offer| offer.state == 'En espera' } %>
-        <div class="notification is-danger">
-          Hay una oferta aceptada - Esperando confirmación
-        </div>
-      <% end %>  
-    <!-- Lista de ofertas -->
-    <% if @offers.any?  %>
-      <% @offers.each do |offer| %>
-        <div class="box">
-          <div class="media">
-            <div class="media-left">
-              <!-- Imagen de la oferta -->
-              <%= cl_image_tag(offer.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
-            </div>
-            <div class="media-content">
-              <!-- Título y descripción de la oferta -->
-              <strong><%= offer.name %></strong>
-              <p><%= offer.description %></p>
-            </div>
-            <div class="media-right">
-              <!-- Quién ofreció y estado de la oferta -->
-              <p>Ofrecido por: <%= offer.user.name %></p>
-              <p>Estado: <%= offer.state %></p>
-    
-              <% if   !@offers.any? { |offer| offer.state == 'En espera' } && user_signed_in? && current_user == @product.user %>
-                <%= link_to 'Aceptar Oferta', exchange_confirmation_path(offer.user.id), class: 'button is-primary' %>
-
-              <% end %>    
-              
-              <% if user_signed_in? && current_user == offer.user %>
-                <%= form_with url: offer_delete_path(offer), method: :delete do %>
-                  <%= submit_tag 'Eliminar Oferta', class: 'button is-danger' %>
-                <% end %>
-              <% end %>
-              
-
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% elsif current_user == @product.user %>
-      <p>Aun no recibes ofertas :(</p>
-    <%else%>
-      <p>Aun no hay ninguna oferta, animate a ser el primero!</p>
-
-    <!-- Pop-up para Reportar -->
-    <div class="modal" id="reportModal">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-          <header class="modal-card-head">
-              <p class="modal-card-title">Reportar Producto</p>
-              <button class="delete" aria-label="close" onclick="closeModal()"></button>
-          </header>
-          <section class="modal-card-body">
-              <%= form_with model: ProductReport.new, url: reports_path, id: 'reportForm', local: true do |f| %>
-                  <%= f.text_area :motivo, class: 'textarea', placeholder: 'Escribe el motivo del reporte aquí...' %>
-                  <%= f.hidden_field :product_id, value: @product.id %>
-              <% end %>
-          </section>
-          <footer class="modal-card-foot">
-              <%= button_tag type: 'submit', form: 'reportForm', class: 'button is-success' do %>
-                  Enviar
-              <% end %>
-              <button class="button" onclick="closeModal()">Cancelar</button>
-          </footer>
-      </div>
-    </div>
-    
-    <% if flash[:modal_closed] %>
-      <script>
-        window.onload = function() {
-          closeModal();
-        };
-      </script>
-
-    <% end %>
-
-    
-
     <script>
         function acceptOffer(userId) {
             alert('Intercambio aceptado, ahora serás redirigido para comunicarte con el ofertador.');
@@ -204,18 +105,12 @@
         }
 
         function openModal() {
-          document.getElementById('reportModal').classList.add('is-active');
-      }
+            document.getElementById('reportModal').classList.add('is-active');
+        }
   
-      function closeModal() {
-          document.getElementById('reportModal').classList.remove('is-active');
-      }
-  
-      function sendReport() {
-          document.getElementById('reportForm').submit();
-          alert('Reporte enviado!');
-          closeModal();
-      }
+        function closeModal() {
+            document.getElementById('reportModal').classList.remove('is-active');
+        }
     </script>
 </body>
 </html>
