@@ -11,7 +11,8 @@ class ReportsController < ApplicationController
     @product_report = ProductReport.new(product_report_params)
     
     if @product_report.save
-      redirect_to explora_product_path(id: @product_report.product_id), notice: 'Reporte enviado con éxito.', modal_closed: true
+      redirect_to explora_product_path(id: @product_report.product_id), notice: 'Reporte enviado con éxito.', 
+modal_closed: true
     else
       render json: @product_report.errors, status: :unprocessable_entity
     end
