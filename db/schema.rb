@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_204451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
     t.datetime "updated_at", null: false
     t.index ["user1_id"], name: "index_chats_on_user1_id"
     t.index ["user2_id"], name: "index_chats_on_user2_id"
+  end
+
+  create_table "exchange_dones", force: :cascade do |t|
+    t.string "seller_name"
+    t.string "bidder_name"
+    t.string "seller_product"
+    t.string "bidder_product"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "state"
+    t.integer "seller_id"
+    t.integer "bidder_id"
+    t.string "seller_product_name"
+    t.string "bidder_product_name"
+    t.index ["bidder_id"], name: "index_exchange_dones_on_bidder_id"
+    t.index ["seller_id"], name: "index_exchange_dones_on_seller_id"
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "offer_id"
+    t.string "seller_state"
+    t.string "bidder_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_exchanges_on_offer_id"
+    t.index ["product_id"], name: "index_exchanges_on_product_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -110,6 +137,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_12_170121) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exchanges", "offers"
+  add_foreign_key "exchanges", "products"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "offers", "products"

@@ -1,0 +1,2 @@
+class ExchangeDonesController < ApplicationController
+end

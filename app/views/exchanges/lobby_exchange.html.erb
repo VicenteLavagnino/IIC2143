@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mis Intercambios</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+  <style>
+    .full-height {
+      height: 94vh; 
+      overflow-y: auto; 
+    }
+
+    .half-height {
+      height: 45vh;
+      overflow-y: auto;
+    }
+    .finalized-exchange {
+  background-color: #f0f0f0; /* Color de fondo claro, ajusta según tus preferencias */
+  border: 1px solid #e0e0e0; /* Borde sutil, opcional */
+  border-radius: 5px; /* Bordes redondeados, opcional */
+  margin-bottom: 10px; /* Espacio entre cada intercambio, ajusta según tus preferencias */
+  padding: 10px; /* Espaciado interno, ajusta según tus preferencias */
+}
+
+  </style>
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Mis Intercambios</h1>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="box full-height">
+          <h3 class="subtitle">Intercambios Pendientes</h3>
+          <% @exchanges.each do |exchange| %>
+            <% if exchange.product.user == current_user || exchange.offer.user == current_user %>
+
+              <div class="box"> <!-- Cada intercambio en su propio minibox -->
+                <div class="media">
+                  <div class="media-left">
+                  <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange.product.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+                
+                  </div>
+                  <div class="media-content">
+                    <p><strong>Vendedor:</strong> <%= exchange.product.user.name %></p>
+                    <p><strong>Producto:</strong> <%= exchange.product.name %></p>
+                    <p><strong>Estado:</strong> <%= exchange.seller_state %></p>
+                  </div>
+                </div>
+
+
+                <!-- Informacion del oferente -->
+                <div class="media">
+                  <div class="media-left">
+                  <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange.offer.image, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+                
+                  </div>
+                  <div class="media-content">
+                    <p><strong>Ofertante:</strong> <%= exchange.offer.user.name %></p>
+                    <p><strong>Producto:</strong> <%= exchange.offer.name %></p>
+                    <p><strong>Estado:</strong> <%= exchange.bidder_state %></p>
+                  </div>
+                </div>
+                
+                <div class="buttons">
+                  <%= button_to 'Confirmar Intercambio', confirmar_intercambio_path(exchange.id), class: 'button is-success' %>
+                  <%= button_to 'Cancelar Intercambio', cancel_exchange_path(exchange.id), method: :patch, class: 'button is-danger' %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Intercambios de ExchangeDone -->
+      <div class="column is-half">
+  <!-- Intercambios Finalizados -->
+  <div class="box half-height">
+    <h3 class="subtitle">Intercambios Finalizados</h3>
+    <% @exchanges_done_finalized.each do |exchange_done| %>
+      <div class="content finalized-exchange">
+      <div class="content">
+        <p><strong>Fecha del Intercambio:</strong> <%= exchange_done.created_at.strftime("%d/%m/%Y") %></p>
+        <div class="columns">
+          <!-- Información del producto del vendedor -->
+          <div class="column">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange_done.seller_product, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p><strong>Vendedor:</strong> <%= exchange_done.seller_name %></p>
+                <p><strong>Producto:</strong> <%= exchange_done.seller_product_name %></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Información del producto del oferente -->
+          <div class="column">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange_done.bidder_product, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p><strong>Oferente:</strong> <%= exchange_done.bidder_name %></p>
+                <p><strong>Producto:</strong> <%= exchange_done.bidder_product_name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Intercambios Fallidos -->
+  <div class="box half-height">
+    <h3 class="subtitle">Intercambios Fallidos</h3>
+    <% @exchanges_done_failed.each do |exchange_done| %>
+      <div class="content">
+        <p><strong>Fecha del Intercambio:</strong> <%= exchange_done.created_at.strftime("%d/%m/%Y") %></p>
+        <div class="columns">
+          <!-- Información del producto del vendedor -->
+          <div class="column">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange_done.seller_product, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p><strong>Vendedor:</strong> <%= exchange_done.seller_name %></p>
+                <p><strong>Producto:</strong> <%= exchange_done.seller_product_name %></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Información del producto del oferente -->
+          <div class="column">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <%= cl_image_tag(exchange_done.bidder_product, width: 64, height: 64, crop: "fill", class: "media-object") %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p><strong>Oferente:</strong> <%= exchange_done.bidder_name %></p>
+                <p><strong>Producto:</strong> <%= exchange_done.bidder_product_name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+</body>
+</html>

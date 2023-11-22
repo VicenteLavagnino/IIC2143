@@ -1,0 +1,3 @@
+class ExchangeDone < ApplicationRecord
+    
+end
