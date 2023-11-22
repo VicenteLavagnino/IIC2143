@@ -33,7 +33,10 @@
                 <p><strong>Teléfono:</strong> <%= report.user.phone_number %></p>
                 <p><strong>Descripcion:</strong> <%= report.user.description %></p>
               </div>
-              <%= button_to 'Eliminar', delete_report_path(report), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'delete-button' %>
+
+              <%= button_to 'Saltar', delete_report_path(id: report.id, type: "User"), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'button is-primary is-small fixed-width-button' %>
+              <%= button_to 'Banear Usuario', ban_user_path(report.user), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'button is-danger is-small fixed-width-button' %>
+
             </td>
           </tr>
         <% end %>
@@ -74,6 +77,21 @@
   .delete-button:hover {
     background-color: #c0392b;
   }
+
+  .fixed-width-button {
+  width: 150px;
+  }
+
+  .toggle-button {
+  width: 150px;
+  background-color: #fofofo;
+  border: none;
+  }
+
+  .toggle-button:hover {
+    background-color: #d0d0d0;
+  }
+
 </style>
 
 <script>

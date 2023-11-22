@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/reports/user_reports', to: 'reports#user_reports', as: :user_reports
   get '/reports/product_reports', to: 'reports#product_reports', as: :product_reports
   delete '/reports/:id', to: 'reports#destroy', as: :delete_report
+  delete '/reports/:id', to: 'reports#product_report_destroy', as: :delete_product_report
   
 
   
@@ -89,5 +90,10 @@ Rails.application.routes.draw do
 
 
   get 'minifigures', to: 'minifigures#index', as: 'minifigures'
+
+  delete 'user/:id/ban', to: 'user#ban', as: 'ban_user'
+
+  post '/reports', to: 'reports#create_product_report', as: 'reports'
+  post '/user_reports', to: 'reports#create_user_report', as: 'create_user_reports'
 
 end

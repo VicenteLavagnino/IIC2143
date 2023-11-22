@@ -5,6 +5,9 @@ class Product < ApplicationRecord
   has_many :offers, dependent: :destroy
   has_many :exchanges, through: :offers, dependent: :destroy
 
+  has_many :product_reports, dependent: :destroy
+
+
   validates :name, presence: true
   validates :description, presence: true
   validates :image, presence: true
