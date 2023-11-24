@@ -40,6 +40,5 @@
 <div id="sidebar" class="column is-3">
     <%= link_to "Ver", gestionar_perfil_path, id: "ver-link", class: "perfil-item #{'active-item' if current_page?(gestionar_perfil_path)}" %>
     <%= link_to "Editar", edit_user_registration_path, id: "seguridad-link", class: "perfil-item #{'active-item' if current_page?(edit_user_registration_path)}" %>
-    <%= link_to "Ver lista de deseos", class: "perfil-item" %>
     <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "perfil-item logout", remote: true %>
 </div>
