@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyBread</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= favicon_link_tag asset_path('bread.png') %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="navbar-container">
+        <% if user_signed_in? %>
+          <div class="navbar-items-container">
+            <div style = "flex-direction: row; display:flex">
+            <div>            
+              <h3><a href="/" class="navbar-actions-btn">Inicio</a></h3>
+            </div>
+            <div>            
+              <h3><a href="/products" class="navbar-actions-btn">Nuestros Productos</a></h3>
+            </div>
+            <div>
+              <h3><a href="/requests" class="navbar-actions-btn">Compras</a></h3>
+            </div>
+            <div>         
+              <h3><a href="/reviews" class="navbar-actions-btn">Reseñas</a></h3>
+            </div>
+          </div>
+          <div style = "flex-direction: row; display:flex; align-items: center; justify-content: center; padding-left: 50%">
+            <div style = "margin-right: 2rem">
+              <%= link_to edit_user_registration_path do %>
+                <%= image_tag("user.png", size: "30x30") %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button" %>
+            </div>
+          </div>
+        </div>
+        <% else %>
+          <div class="navbar-items-container">                
+            <div>            
+              <h3><a href="/" class="navbar-actions-btn">Inicio</a></h3>
+            </div>
+              <div style="margin-right: 30%">
+                <a href="/products" class="navbar-actions-btn">Nuestros Productos</a>
+              </div>
+
+            <div>
+              <%= link_to "Ingresar", new_user_session_path, class: "navbar-actions-btn" %>
+              <%= link_to "Regístrate", new_user_registration_path, class: "navbar-actions-btn"  %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <p class="alert"><%= flash[:alert] %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

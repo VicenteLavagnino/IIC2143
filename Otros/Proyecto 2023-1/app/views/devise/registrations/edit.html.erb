@@ -1,0 +1,46 @@
+<div style = "aling-items: center; display: flex; flex-direction: column">
+  <div class="form-container" style = "padding: 1rem">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Correo electronico", class: "field-item" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Contraseña actual", class: "field-item" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Nueva contraseña", class: "field-item", class: "field-item" %>
+           <br>
+        <% if @minimum_password_length %>
+          <h5><%= @minimum_password_length%> caracteres mínimo</h5>
+        <% end %>
+      </div>
+
+      <div class="field" style = "margin-top: 2rem">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Repetir nueva contraseña", class: "field-item" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :name  , class: "field-item"%>
+      </div>
+
+      <div class="field">
+      <%= f.file_field :profile_picture %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: "product-table-value-item-btn "  %>
+      </div>
+    <% end %>
+  </div>
+
+  <div style = "aling-items: center; display:flex; width: 100%; justify-content: center">
+    <%= button_to "Cancel my account", registration_path(resource_name), method: :delete, data: { confirm: "Are you sure?" }, class: "cancel-button" %>
+  </div>
+</div>

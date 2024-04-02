@@ -1,0 +1,79 @@
+
+<body>
+
+<div class="hero-image">
+  <%= image_tag("bg.png", style: "height:100%; width:100%; backdrop-filter: blur(1rem);") %>
+  <div class="hero-text">
+    <h1>MyBread, el pan hecho con cariño</h1>
+    <a class="cta-button" href="/products" style = "color: black">Visita nuestros productos</a>
+  </div>
+</div>
+  
+  <div class="content">
+    <div style = "flex-direction: row; display:flex; align-items: center; justify-content: center;%">
+      <div style = "margin-rigth: 1 rem;">
+        <%= image_tag("1.jpeg", style: "height: auto; width: 20rem; backdrop-filter: blur(1rem); border-radius: 10px")%>
+      </div>
+      <div style = "margin: 2rem; width: 100%; heigth: 5rem; display: flex; text-align: left;">
+        <h3 style = "font-weight: normal; width: 40rem; color: #36454F;">
+          Cada pan que sale de nuestro horno es el resultado de un cuidadoso proceso de elaboración. Nuestros panaderos expertos dedican tiempo y atención a cada detalle, desde la selección de los ingredientes hasta el amasado y el horneado. Utilizamos solo ingredientes frescos y auténticos, buscando siempre la excelencia en sabor, textura y aroma.
+        </h3>
+      </div>
+    </div>
+
+    <div style = "flex-direction: row; display:flex; align-items: center; justify-content: center;%">
+       <div style = "margin: 2rem; width: 100%; heigth: 5rem; display: flex; text-align: left;">
+        <h3 style = "font-weight: normal; width: 40rem; color: #36454F;">
+          Estamos orgullosos de ofrecerte una amplia variedad de opciones, desde panes clásicos hasta creaciones especiales con ingredientes únicos. Ya sea que busques una baguette crujiente, un pan integral nutritivo o una deliciosa focaccia, encontrarás la calidad y el sabor excepcionales en cada producto que elijas.
+        </h3>
+      </div>
+      <div style = "margin-rigth: 1 rem;">
+        <%= image_tag("2.jpeg", style: "height: auto; width: 20rem; backdrop-filter: blur(1rem); border-radius: 10px")%>
+      </div>
+    </div>
+    <div style = "display: flex; flex-direction: column; align-items: center; justify-content: center">
+      <h2 style = "margin-top: 3rem;">Déjanos un mensaje</h2>
+      <form action="https://formsubmit.co/jpgelmi@gmail.com" method="POST">
+        <div style = "display: flex; flex-direction: column; align-items: center; justify-content: center">
+            <div class="form-container" style = "margin-bottom: 1rem">
+              <input type="text" class="field-item"
+              placeholder="Nombre completo" name="nombre">
+            </div>
+            <div class="form-container" style = "margin-bottom: 1rem">
+              <input type="email" class="field-item"
+              placeholder="Correo electrónico" name="correo">
+            </div>
+            <div class="form-container" style = "margin-bottom: 1rem">
+              <input type="tel" class="field-item"
+              placeholder="Numero de teléfono" name="numero">
+            </div>
+            <div class="form-container" style = "margin-bottom: 1rem">
+              <textarea type="text" class="field-item"
+              placeholder="Mensaje..." name="mensaje" style = "height : 7rem">
+              </textarea>
+            </div>
+        </div>
+        <input type="submit" class = "product-table-value-item-btn" value="Enviar" style = "font-weight: bold;" href = "/">
+        <input type="hidden" name="_next" value="/" href = "/">
+        <input type="hidden" name="_captcha" value = "false" >
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <ul class="social-icon">
+      <li class="social-icon__item""><a style = "color: black;" class="social-icon__link" href="https://es-la.facebook.com/LoSaldes/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a style = "color: black;" class="social-icon__link" href="https://www.instagram.com/losaldes/">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <p style = "color: black">&copy;2023 MyBread | Todos los derechos reservados</p>
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+</body>

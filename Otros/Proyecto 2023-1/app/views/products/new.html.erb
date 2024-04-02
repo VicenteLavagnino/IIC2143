@@ -1,0 +1,13 @@
+<div style = "aling-items: center; display:flex; flex-direction: column; width: 100%; justify-content:center">
+  <div style = "width: 100%; display:flex; aling-items: center; justify-content:center">
+    <h1>Nuevo producto</h1>
+  </div>
+
+  <div style = "width: 100%; display:flex; aling-items: center; justify-content:center">
+    <%= render "form", product: @product %>
+  </div>
+
+  <div style = "width: 100%; display:flex; aling-items: center; justify-content:center">
+    <%= link_to "Back to products", products_path, class: "product-table-value-item-btn" %>
+  </div>
+</div>

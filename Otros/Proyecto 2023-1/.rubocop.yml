@@ -1,0 +1,17 @@
+# .rubocop.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - "app/controllers/users/registrations_controller.rb"
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+Style/Documentation:
+  Enabled: false

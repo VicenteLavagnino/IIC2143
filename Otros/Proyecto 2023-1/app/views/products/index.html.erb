@@ -1,0 +1,32 @@
+<div style = "flex-direction: column; display: flex;">
+  <div class = "products-banner-container" style = "padding-top: 3rem">
+    <h2>Nuestros Productos</h2>
+  </div>
+  <div class = "admin-btns-container" style = "padding-top: 3rem">
+    <% if current_user.present? && current_user.name == "admin" %>
+      <%= link_to "Nuevo producto", "/products/new", class: "product-table-value-item-btn" %>      
+    <%end%>
+  </div>
+</div>
+<div id="products" class = "products-table-container" >
+  <% @products.each do |product| %>
+    <div class = "product-table-value-item" style = "height: auto; margin-bottom: 5rem;">
+      <div style = "align-items: center; justify-content: center; display:flex; flex-direction: column;">
+        <div class = "flex-direction: column; display: flex; justify-content: center; align-items:center; width:100%">
+          <div style = "display:flex; margin-top: 2rem; border-width: 0px; margin-bottom: 2rem">
+              <%= image_tag(product.image, size: "200x200", style: "border-width: 0px; border: null; border-radius: 10px")%>
+          </div>
+          <div style = "margin-top: 2px; width: 100%; justify-content:center; display:flex">
+            <%= product.name %>
+          </div>
+          <div style = "margin-top: 2px; width: 100%; justify-content:center; display:flex">
+            <p>$<%= product.price %></p>
+          </div>
+        </div>
+      </div>
+      <div class = "product-table-value-item-container" >
+        <%= link_to "Ver producto", product, class: "product-table-value-item-btn" %>
+      </div>
+    </div>
+  <% end %>
+</div>

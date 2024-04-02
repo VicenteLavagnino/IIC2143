@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<div class = "admin-btns-container">
+  <% if current_user&.name == "admin" %>
+    <%= link_to "Edit this product", edit_product_path(@product), class: "product-table-value-item-btn"%>
+    <%= button_to "Destroy this product", @product, method: :delete, class: "product-table-value-item-btn"%>
+    <% end %>
+</div>
+
+<%= render @product %>

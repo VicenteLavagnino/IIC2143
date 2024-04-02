@@ -1,0 +1,13 @@
+<div style = "aling-items:center; display:flex; width:100%; flex-direction: column; justify-content: center">
+  <p style="color: green"><%= notice %></p>
+
+  <div style = "display:flex;">
+    <%= render @review %>
+  </div>
+
+  <div style = "aling-items:center; display:flex; width:100%; flex-direction: column; justify-content: center;">
+    <%= link_to "Edit this review", edit_review_path(@review), class: "product-table-value-item-btn"%> 
+    <%= link_to "Back to reviews", reviews_path, class: "product-table-value-item-btn" %>
+    <%= button_to "Destroy this review", @review, method: :delete, class: "product-table-value-item-btn" %>
+  </div>
+</div>
